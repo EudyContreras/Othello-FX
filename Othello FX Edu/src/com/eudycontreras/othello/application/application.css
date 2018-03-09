@@ -1,0 +1,281 @@
+
+.root {
+    -fx-fill:radial-gradient(center 50% -40%, radius 200%, rgb(140, 170, 0) 45%, rgb(60, 140, 0)  50%);
+    -fx-background-color: rgba(0,0,0, 0.8);
+    -fx-border-width: 8; 
+ 	-fx-border-radius: 10;
+  	-fx-background-radius: 18;
+}
+#background {
+    -fx-fill:radial-gradient(center 50% -40%, radius 200%, rgb(140, 170, 0) 45%, rgb(60, 140, 0)  50%);
+    -fx-background-color: rgba(0,0,0,0);
+}
+ 
+#game-logo {
+    -fx-font: 60px "normal";
+    -fx-fill: white;
+    -fx-stroke: red;
+    -fx-stroke-width: 2;
+    -fx-blend-mode: darken;
+}
+ 
+#java-fx-label {
+     -fx-fill:radial-gradient(center 50% -40%, radius 200%, rgb(140, 170, 0) 45%, rgb(60, 140, 0)  50%);
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 12, 0.35 , -12.0 , 12.0 );
+}
+  
+#player_label{
+     -fx-fill:white;
+}
+
+#othello-label{
+     -fx-fill:linear-gradient(rgb(150,150,150), rgb(220,220,220));
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 12, 0.35 , -10.0 , 10.0 );
+     -fx-stroke: white;
+     -fx-stroke-width: 3.5;
+}
+
+#winner-label{
+   	 -fx-fill:linear-gradient(rgb(150,150,150), white);
+     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 12, 0.35 , -10.0 , 10.0 );
+     -fx-stroke: white;
+     -fx-stroke-width: 3.5;
+}
+
+#info-label {
+    -fx-background-color:
+        radial-gradient(center 50% 220%, radius 200%, rgb(120, 170, 0) 45%, rgb(50, 130, 0)  50%);
+	-fx-border-color: rgba(10, 10, 10);
+    -fx-stroke-width: 3.5;
+ 	-fx-border-radius: 10 10 0 0;
+  	-fx-background-radius: 10 10 0 0;
+    -fx-background-insets: 2, 1;
+    -fx-padding: 3 10;
+    -fx-text-fill: white;
+    
+}
+.text-area {
+    -fx-font-size: 12;
+    -fx-text-fill: white;
+    -fx-display-caret:false;
+    -fx-border-color: black; 
+    -fx-border-width: 0;
+ 	-fx-border-radius: 0; 
+ 	-fx-focus-color: transparent;
+
+    -fx-background-color: rgba(0,0,0,0.0);
+}
+
+.text-area .content {
+ 	-fx-background-insets: 0;
+    -fx-background-color: transparent, rgba(20, 20, 20, 0.60), transparent, rgba(20, 20, 20, 0.60);
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, rgba(20, 20, 20, 0.60), transparent, rgba(20, 20, 20, 0.60);
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #000000;
+}
+
+.text-area .content {
+    -fx-padding: 0px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #000000;
+}
+
+.text-area .scroll-bar:vertical:disabled {
+    -fx-opacity: 0;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+#info-panel-style{
+	 -fx-background-color: rgba(0,0,0, 0.4);
+	 -fx-border-color: rgba(10, 10, 10);
+ 	 -fx-border-width: 6; 
+ 	 -fx-padding: 0;
+  	 -fx-border-radius: 0 0 10 10;
+  	 -fx-background-radius: 0 0 10 10;
+  	 -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.45) , 14, 0.35 , -12.0 , 12.0 );
+}
+
+#info-panel-state-style{
+    -fx-background-color:
+        linear-gradient(rgb(20,180,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(120, 170, 0) 45%, rgb(40, 120, 0)  50%);
+	-fx-border-color: rgba(10, 10, 10);
+    -fx-stroke-width: 3.5;
+ 	 -fx-padding: 0;
+  	 -fx-border-radius: 0 0 10 10;
+  	 -fx-background-radius: 0 0 10 10;
+  	 -fx-effect: dropshadow( two-pass-box , rgba(0,0,0,0.45) , 14, 0.35 , -12.0 , 12.0 );
+}
+
+#game-board-color {
+	 -fx-background-color: rgb(40, 150, 10);
+	 -fx-border-color: rgb(10, 10, 10);
+ 	 -fx-border-width: 10; 
+ 	 -fx-border-radius: 14;
+ 	 -fx-padding: 8;
+  	 -fx-background-radius: 18;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 18, 0.35 , -12.0 , 12.0 );
+}
+
+#overlay-screen-style{
+	 -fx-background-color: rgb(0,0,0,0);
+	 -fx-border-color: rgb(10,10,10);
+ 	 -fx-border-width: 12; 
+	 -fx-border-radius: 14;
+  	 -fx-background-radius: 18;
+}
+
+#game-board-grid-color {
+ 	 -fx-background-color:rgb(0, 20, 0);
+	 -fx-border-color: rgb(10, 10, 10);
+ 	 -fx-border-width: 10; 
+ 	 -fx-border-radius: 12;
+  	 -fx-background-radius: 16;
+}
+
+#game-end-view-style {
+	 -fx-background-color: linear-gradient(rgb(90, 170, 0) 10%, rgb(10, 100, 0) 90%);
+	 -fx-border-color: rgb(0,0,0);
+ 	 -fx-border-width: 10; 
+ 	 -fx-border-radius: 14;
+  	 -fx-background-radius: 16;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.55) , 30, 0.3 , -30.0 , 30.0 );
+}
+
+#game-end-view-center-style {
+	 -fx-background-color: linear-gradient(rgb(30, 30, 30) 10%, rgb(0, 0, 0) 90%);
+	 -fx-border-color: linear-gradient(rgb(80, 150, 0) 10%, rgb(30, 120, 0) 90%);
+ 	 -fx-border-width: 8; 
+ 	 -fx-border-radius: 14;
+  	 -fx-background-radius: 16;
+}
+
+#game-score-board {
+	 -fx-background-color: linear-gradient(rgb(30, 110, 0) 0%, rgb(110, 160, 0)100%);
+	 -fx-border-color: rgb(10,10,10);
+ 	 -fx-border-width: 7; 
+ 	 -fx-border-radius: 12;
+  	 -fx-background-radius: 16;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.60) , 19, 0.30 , -10.0 , 10.0 );
+}
+
+#game-board-cell-1-color {
+	 -fx-background-color:linear-gradient(rgb(120, 160, 0) 10%, rgb(80, 150, 10) 90%);
+}
+
+/* 
+#game-board-cell-1-color:hover {
+	 -fx-background-color: radial-gradient(center 50% 50%, radius 60%, reflect, rgb(190, 230, 0), rgb(80, 150, 0) );
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 10, 0.3 , -10.0 , 10.0 );
+}
+*/
+
+#game-board-cell-2-color {
+	 -fx-background-color: linear-gradient(rgb(15, 110, 10) 0%, rgb(0, 70, 10) 100%);
+}
+/* 
+#game-board-cell-2-color:hover{
+     -fx-background-color: radial-gradient(center 50% 50%, radius 60%, rgb(140, 210, 0), rgb(20, 100, 0) );
+	 fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.45) , 10, 0.3 , -10.0 , 10.0 );
+}
+*/
+#game-menu-button {
+    -fx-background-color:
+        linear-gradient(rgb(20,180,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(110, 160, 0) 45%, rgb(30, 110, 0)  50%);
+	 -fx-border-color: rgb(0, 0, 0);
+ 	 -fx-border-width: 4; 
+ 	 -fx-border-radius: 8;
+  	 -fx-background-radius: 12;
+   	 -fx-font-size: 12.0pt;
+	 -fx-font-weight: bold;
+     -fx-text-fill: white;
+     -fx-padding: 8 20;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.50) , 10, 0.4 , -6.0 , 6.0 );
+}
+
+#game-menu-button:hover {
+    -fx-background-color:
+        linear-gradient(rgb(20,180,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(130, 190, 0) 45%, rgb(50, 130, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.55) , 12, 0.4 , -8.0 , 8.0 );
+}
+
+#game-menu-button:pressed {
+     -fx-background-color:
+        linear-gradient(rgb(20,180,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(80, 130, 0) 45%, rgb(50, 130, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 5, 0.3 , -1.0 , 1.0 );
+}
+
+#game-menu-quit-button {
+     -fx-background-color:
+        linear-gradient(rgb(180,0,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(175, 0, 0) 45%, rgb(100, 0, 0)  50%);
+	 -fx-border-color: rgb(0, 0, 0);
+ 	 -fx-border-width: 4; 
+ 	 -fx-border-radius: 8;
+  	 -fx-background-radius: 12;
+   	 -fx-font-size: 12.0pt;
+	 -fx-font-weight: bold;
+     -fx-text-fill: white;
+     -fx-padding: 8 20;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.50) , 10, 0.4 , -6.0 , 6.0 );
+}
+
+#game-menu-quit-button:hover {
+     -fx-background-color:
+        linear-gradient(rgb(180,0,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(200, 0, 0) 45%, rgb(120, 0, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 5, 0.3 , -7.0 , 7.0 );
+}
+
+#game-menu-quit-button:pressed {
+     -fx-background-color:
+  		linear-gradient(rgb(180,0,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(170, 0, 0) 45%, rgb(80, 0, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 5, 0.3 , -1.0 , 1.0 );
+}
+
+#game-menu-end-dialog-button {
+    -fx-background-color:
+        linear-gradient(rgb(20,180,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(80, 140, 0) 45%, rgb(20, 120, 0)  50%);
+ 	 -fx-border-radius: 8;
+  	 -fx-background-radius: 12;
+   	 -fx-font-size: 12.0pt;
+	 -fx-font-weight: bold;
+     -fx-text-fill: white;
+     -fx-padding: 8 20;
+  	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.50) , 10, 0.3 , -3.0 , 3.0 );
+}
+
+#game-menu-end-dialog-button:hover {
+     -fx-background-color:
+        linear-gradient(rgb(180,0,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(200, 0, 0) 45%, rgb(120, 0, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 5, 0.3 , -5.0 , 5.0 );
+}
+
+#game-menu-end-dialog-button:pressed {
+     -fx-background-color:
+  		linear-gradient(rgb(180,0,0), rgb(10,10,10)),
+        radial-gradient(center 50% -40%, radius 200%, rgb(170, 0, 0) 45%, rgb(80, 0, 0)  50%);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5) , 5, 0.3 , -1.0 , 1.0 );
+}

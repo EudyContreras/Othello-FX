@@ -1,0 +1,10 @@
+Refer to the main package for user related classes
+
+The Agent classes extend AgentMove and IAgentMove 
+write your logic inside the agent classes or write a new
+agent class which extends AgentMove.
+
+The AgentManager will allow you to run your agent
+
+The Settings class provides some settings as well as
+some default useful constants.
