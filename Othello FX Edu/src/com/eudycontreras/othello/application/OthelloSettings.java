@@ -1,7 +1,5 @@
 package com.eudycontreras.othello.application;
 
-import com.eudycontreras.othello.enumerations.PlayerTurn;
-
 import main.Settings;
 
 /**
@@ -12,6 +10,8 @@ import main.Settings;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
  */
 public class OthelloSettings {
 	

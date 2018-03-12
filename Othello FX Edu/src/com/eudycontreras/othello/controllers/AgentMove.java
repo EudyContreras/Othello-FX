@@ -11,7 +11,8 @@ package com.eudycontreras.othello.controllers;
  * Class which represents an AI agent which will produce a move
  * Feel free to take a good look at the agent controller for additional
  * helper methods, examples and methods for creating more complex AI agents.
- * 1@author Eudy Contreras
+ * 
+ * @author Eudy Contreras
  */
 public abstract class AgentMove implements IAgentMove {
 

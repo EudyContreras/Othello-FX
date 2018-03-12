@@ -8,8 +8,10 @@ import java.util.Random;
 
 import com.eudycontreras.othello.application.Othello;
 import com.eudycontreras.othello.application.OthelloSettings;
+import com.eudycontreras.othello.capsules.AbstractMove;
 import com.eudycontreras.othello.capsules.MoveWrapper;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
+import com.eudycontreras.othello.capsules.TraversalWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.exceptions.NotImplementedException;
@@ -32,6 +34,7 @@ import main.Settings;
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
  * Helper class for facilitating AI Agent creation
+ * 
  * @author Eudy Contreras
  */
 public class AgentController {
@@ -101,7 +104,7 @@ public class AgentController {
 		
 		ThreadManager.execute(()->{
 			
-			MoveWrapper move = agent.getMove(root);
+			AbstractMove move = agent.getMove(root);
 			
 			othello.getGameController().passInformation(
 					agent.getSearchDepth(),
@@ -131,24 +134,47 @@ public class AgentController {
 	 * @return
 	 */
 	public static MoveWrapper getExampleMove(GameBoardState gameState) {
-		if(new Random().nextBoolean()){
+		int value = new Random().nextInt(3);
+		
+		if(value == 0){
 			return AgentController.findBestMove(gameState, PlayerTurn.PLAYER_ONE);
-		}else{
+		}else if(value == 1){
 			return AgentController.findSafeMove(gameState, PlayerTurn.PLAYER_ONE);
+		}else if(value == 3){
+			return AgentController.findRandomMove(gameState, PlayerTurn.PLAYER_ONE);
 		}
+
+		return AgentController.findBestMove(gameState, PlayerTurn.PLAYER_ONE);
 	}
 	
 	/**
 	 * Example method which returns the move that yields the most immediate reward
 	 * @param currentState : The current state of the game
 	 * @param turn : The current turn give the state
-	 * @return : The safest move possible given a one step lookahead
+	 * @return : The move that yields the best score
 	 */
 	public static MoveWrapper findBestMove(GameBoardState currentState, PlayerTurn turn){
 		
+		//Best move chosen from a list of moves
 		ObjectiveWrapper bestMove = getBestMove(currentState, turn);
 
 		return new MoveWrapper(bestMove);
+	}
+	/**
+	 * Example method which returns a random move from a list of all available moves
+	 * @param currentState : The current state of the game
+	 * @param turn : The current turn give the state
+	 * @return : The random move
+	 */
+	public static MoveWrapper findRandomMove(GameBoardState currentState, PlayerTurn turn){
+		
+		//Retrieves and stores all moves for specified player given the current state of the game
+		List<ObjectiveWrapper> agentMoves = getAvailableMoves(currentState, turn);
+		
+		//Random move chosen from the list of moves
+		ObjectiveWrapper randomMove = agentMoves.get(new Random().nextInt(agentMoves.size()));
+		
+		return new MoveWrapper(randomMove);
 	}
 
 	/**
@@ -209,7 +235,11 @@ public class AgentController {
 			}
 			
 			//Gets the best move that the adversary can make given the current state
-			ObjectiveWrapper bestMove = getBestMove(agentMoveState, GameTreeUtility.getCounterPlayer(turn));		
+			ObjectiveWrapper bestMove = getBestMove(agentMoveState, GameTreeUtility.getCounterPlayer(turn));
+			
+			if(bestMove == null){
+				continue;
+			}
 		
 			//The best move is then added to the list of adversary moves as a result
 			adversaryMoves.add(new ResultWrapper(agentMoveState, bestMove, agentMove));
@@ -1091,7 +1121,14 @@ public class AgentController {
 
 				@Override
 				public int compare(ResultWrapper arg0, ResultWrapper arg1) {
-					return Integer.compare(arg0.getHumanMove().getPath().size(), arg1.getHumanMove().getPath().size());
+					
+					ObjectiveWrapper obj0 = arg0.getHumanMove();
+					ObjectiveWrapper obj1 = arg1.getHumanMove();
+					
+					List<TraversalWrapper> path0 = obj0.getPath();
+					List<TraversalWrapper> path1 = obj1.getPath();
+					
+					return Integer.compare(path0.size(), path1.size());
 				}
 				
 			};

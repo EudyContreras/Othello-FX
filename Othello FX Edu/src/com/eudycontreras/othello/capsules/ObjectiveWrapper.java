@@ -1,5 +1,6 @@
 package com.eudycontreras.othello.capsules;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,7 @@ import com.eudycontreras.othello.models.GameBoardCell;
  * <H2>Class description</H2>
  * Class which encapsulates information about
  * an objective cell.
+ * 
  * @author Eudy Contreras
  *
  */
@@ -28,10 +30,13 @@ public class ObjectiveWrapper {
 	private GameBoardCell objectiveCell;
 	private GameBoardCell currentCell;	
 	
-	private List<TraversalWrapper> path;
+	private List<TraversalWrapper> path = new LinkedList<>();
 	
 	public ObjectiveWrapper(List<TraversalWrapper> path) {
 		this.path = path;
+		if(path == null){
+			path = new LinkedList<>();
+		}
 	}
 
 	public ObjectiveWrapper(GameBoardCell cell, GameBoardCell currentCell) {
@@ -91,6 +96,9 @@ public class ObjectiveWrapper {
 	 */
 	public void setPath(List<TraversalWrapper> path) {
 		this.path = path;
+		if(path == null){
+			path = new LinkedList<>();
+		}
 	}
 	
 	private static Comparator<ObjectiveWrapper> getComparator() {

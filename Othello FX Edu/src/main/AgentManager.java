@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  * Feel free to take a good look at the agent controller for additional
  * helper methods, examples and methods for creating more complex AI agents.
  * 
- * Feel also free to refer to the threading package for multi-threading helpers
+ * Feel also free to refer to the threading package for multi-threading and timer helpers
  * 
  * <pre>
  *  Execute a task on a separate thread
@@ -49,9 +49,10 @@ public class AgentManager extends Application{
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		new Othello(primaryStage, new AgentA());
-		//new Othello(primaryStage, new AgentA());
-		//new Othello(primaryStage, new AgentA());
+		new Othello(primaryStage, new ExampleAgentA());
+		//new Othello(primaryStage, new ExampleAgentB());
+		//new Othello(primaryStage, new ExampleAgentC());
+		//new Othello(primaryStage, new ExampleAgentD());
 	}
 
 	public static void main(String[] args) {

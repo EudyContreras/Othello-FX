@@ -11,14 +11,14 @@ import com.eudycontreras.othello.enumerations.BoardCellState;
  * <H2>Class description</H2>
  * Class which encapsulates information about 
  * a performed move.
+ * 
  * @author Eudy Contreras
  *
  */
-public class MoveWrapper implements Comparable<MoveWrapper>{
+public class MoveWrapper extends AbstractMove{
 
 	private int moveReward;
 	
-	private IndexWrapper moveIndex;
 	private IndexWrapper startIndex;
 	
 	private BoardCellState target;
@@ -63,6 +63,7 @@ public class MoveWrapper implements Comparable<MoveWrapper>{
 	 * Determines whether the start and move indexes are set
 	 * @return
 	 */
+	@Override
 	public boolean isValid() {
 		return moveIndex != null && startIndex != null;
 	}
@@ -85,22 +86,6 @@ public class MoveWrapper implements Comparable<MoveWrapper>{
 		this.moveReward = moveLength;
 	}
 
-	/**
-	 * The index which this move will occupy
-	 * @return the move index
-	 */
-	public IndexWrapper getMoveIndex() {
-		return moveIndex;
-	}
-
-	/**
-	 * Sets the destination index of the move.
-	 * @param startIndex: The index which this move will occupy
-	 */
-	public void setMoveIndex(IndexWrapper moveIndex) {
-		this.moveIndex = moveIndex;
-	}
-	
 	/**
 	 * Gets the index from which the move is performed
 	 * @return the start index

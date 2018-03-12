@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
 /**
  * <H2>Created by</h2> Eudy Contreras
  * <h4> Mozilla Public License 2.0 </h4>
@@ -24,6 +25,8 @@ import javafx.scene.paint.Color;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
  */
 public class GameMenuView extends StackPane {
 

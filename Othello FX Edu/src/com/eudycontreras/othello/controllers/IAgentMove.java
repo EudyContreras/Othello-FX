@@ -1,6 +1,6 @@
 package com.eudycontreras.othello.controllers;
 
-import com.eudycontreras.othello.capsules.MoveWrapper;
+import com.eudycontreras.othello.capsules.AbstractMove;
 import com.eudycontreras.othello.models.GameBoardState;
 
 /**
@@ -14,10 +14,11 @@ import com.eudycontreras.othello.models.GameBoardState;
  * Class which represents an AI agent which will produce a move
  * Feel free to take a good look at the agent controller for additional
  * helper methods, examples and methods for creating more complex AI agents.
- * 1@author Eudy Contreras
+ * 
+ * @author Eudy Contreras
  */
 public interface IAgentMove {
 	
-	public MoveWrapper getMove(GameBoardState gameState);
+	public AbstractMove getMove(GameBoardState gameState);
 	
 }

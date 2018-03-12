@@ -9,6 +9,7 @@ import com.eudycontreras.othello.capsules.IndexWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellType;
 import com.eudycontreras.othello.enumerations.PieceType;
 
+import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Transition;
 import javafx.geometry.Insets;
@@ -31,6 +32,8 @@ import javafx.util.Duration;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
  */
 public class GameBoardView extends StackPane {
 	
@@ -212,9 +215,18 @@ public class GameBoardView extends StackPane {
 	}
 	
 	public void applyTraversableEffect(PieceType type, int row, int col){
+		ScaleTransition scaleCell = new ScaleTransition();
+		
+		scaleCell.setNode(gameCellSlot[row][col]);
+		scaleCell.setDuration(Duration.millis(170));
+		scaleCell.setInterpolator(Interpolator.EASE_OUT);
+		scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
+		scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
+		scaleCell.setToX(1.1);
+		scaleCell.setToY(1.1);
+		scaleCell.play();
+
 		gameCellSlot[row][col].toFront();
-		gameCellSlot[row][col].setScaleX(1.1);
-		gameCellSlot[row][col].setScaleY(1.1);
 		gameCellSlot[row][col].setEffect(shadow);
 		switch(type){
 		case BLACK:
@@ -234,8 +246,18 @@ public class GameBoardView extends StackPane {
 	
 	public void removeTraversableEffect(PieceType type,int row, int col){
 		scale.stop();
-		gameCellSlot[row][col].setScaleX(1);
-		gameCellSlot[row][col].setScaleY(1);
+
+		ScaleTransition scaleCell = new ScaleTransition();
+		
+		scaleCell.setNode(gameCellSlot[row][col]);
+		scaleCell.setDuration(Duration.millis(170));
+		scaleCell.setInterpolator(Interpolator.EASE_OUT);
+		scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
+		scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
+		scaleCell.setToX(1);
+		scaleCell.setToY(1);
+		scaleCell.play();
+		
 		gameCellSlot[row][col].setEffect(null);
 		gameCellSlot[row][col].getChildren().remove(blackShadow);
 		gameCellSlot[row][col].getChildren().remove(whiteShadow);

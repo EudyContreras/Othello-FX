@@ -8,9 +8,9 @@ import com.eudycontreras.othello.application.OthelloGame;
 import com.eudycontreras.othello.application.OthelloSettings;
 import com.eudycontreras.othello.callbacks.EventCallbackController;
 import com.eudycontreras.othello.callbacks.EventCallbackView;
+import com.eudycontreras.othello.capsules.AbstractMove;
 import com.eudycontreras.othello.capsules.AvailableWrapper;
 import com.eudycontreras.othello.capsules.IndexWrapper;
-import com.eudycontreras.othello.capsules.MoveWrapper;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.capsules.TraversalWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
@@ -19,7 +19,8 @@ import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.enumerations.PlayerType;
 import com.eudycontreras.othello.models.GameBoardCell;
 import com.eudycontreras.othello.models.GameBoardState;
-import com.eudycontreras.othello.threading.ThreadManager;
+import com.eudycontreras.othello.threading.ThreadTimer;
+import com.eudycontreras.othello.threading.ThreadTimer.TimerControl;
 import com.eudycontreras.othello.threading.TimeSpan;
 import com.eudycontreras.othello.utilities.GameBoardUtility;
 import com.eudycontreras.othello.utilities.TraversalUtility;
@@ -35,6 +36,8 @@ import javafx.scene.input.MouseEvent;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
  */
 public class GameController {
 
@@ -45,6 +48,8 @@ public class GameController {
 	
 	private OthelloGame othelloGame;
 	 
+	private TimerControl timerControl;
+	
     private AvailableWrapper whitePossibleCells;
     private AvailableWrapper blackPossibleCells;
     
@@ -82,7 +87,11 @@ public class GameController {
 	}
 	
 	public void makeMove(PlayerType player, int row, int col, boolean initialStateMove){
-			
+
+		if(timerControl != null){
+			timerControl.stopTimer(true);
+		}
+		
 		if(callbackController != null){
 
 			this.callbackController.resetCells();
@@ -133,7 +142,7 @@ public class GameController {
 		
 		updateGameScore();	
 		
-		ThreadManager.schedule(TimeSpan.millis(2000), ()->{
+		timerControl = ThreadTimer.schedule(TimeSpan.millis(2000), ()->{
 			evaluateGame(othelloGame.getGameBoard().getGameState());
 		});
 		
@@ -282,55 +291,59 @@ public class GameController {
 		if (boardSize == (whiteCount + blackCount)){	
 			determineWinner(whiteCount, blackCount);
 		}else{
-			switch(currentTurn){
-				case PLAYER_ONE:
-					if(!hasAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE)){
-						if(hasAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK)){
-							
-							computeAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK);
-
-							storeAvailableCells(PlayerType.PLAYER_TWO, othelloGame.getGameBoard().getGameBoardObjectiveIndexes(getStateBaseObjective(getBoardCellState(PlayerType.PLAYER_TWO))),false);
-							
-							currentTurn = PlayerTurn.PLAYER_TWO;
-							
-							Platform.runLater(()->{
-								for(IndexWrapper move: blackPossibleCells.getIndexes()){
-									callbackController.showPossibleMove(PlayerType.PLAYER_TWO, move);	
-								}
-							});
-						}else{
-							System.out.println("NO MORE MOVES CAN BE MADE!");
-							determineWinner(whiteCount, blackCount);
-						}
-					}
-					break;
-				case PLAYER_TWO:
-					if(!hasAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK)){
-						if(hasAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE)){
-							
-							computeAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE);
-
-							storeAvailableCells(PlayerType.PLAYER_ONE, othelloGame.getGameBoard().getGameBoardObjectiveIndexes(getStateBaseObjective(getBoardCellState(PlayerType.PLAYER_ONE))),false);
-							
-							currentTurn = PlayerTurn.PLAYER_ONE;
-							
-							Platform.runLater(()->{
-								for(IndexWrapper move: whitePossibleCells.getIndexes()){
-									callbackController.showPossibleMove(PlayerType.PLAYER_ONE, move);	
-								}
-								
-							});
-							
-							othello.setAgentMove();
-						}else{
-							System.out.println("NO MORE MOVES CAN BE MADE!");
-							determineWinner(whiteCount, blackCount);
-						}
-					}
-					break;
-			}
+			resolvePlayerMove(whiteCount, blackCount);
 		}
 		
+	}
+
+	private void resolvePlayerMove(long whiteCount, long blackCount) {
+		switch(currentTurn){
+			case PLAYER_ONE:
+				if(!hasAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE)){
+					if(hasAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK)){
+						
+						computeAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK);
+
+						storeAvailableCells(PlayerType.PLAYER_TWO, othelloGame.getGameBoard().getGameBoardObjectiveIndexes(getStateBaseObjective(getBoardCellState(PlayerType.PLAYER_TWO))),false);
+						
+						currentTurn = PlayerTurn.PLAYER_TWO;
+						
+						Platform.runLater(()->{
+							for(IndexWrapper move: blackPossibleCells.getIndexes()){
+								callbackController.showPossibleMove(PlayerType.PLAYER_TWO, move);	
+							}
+						});
+					}else{
+						System.out.println("NO MORE MOVES CAN BE MADE!");
+						determineWinner(whiteCount, blackCount);
+					}
+				}
+				break;
+			case PLAYER_TWO:
+				if(!hasAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK)){
+					if(hasAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE)){
+						
+						computeAvailableMoves(PlayerType.PLAYER_ONE, BoardCellState.WHITE);
+
+						storeAvailableCells(PlayerType.PLAYER_ONE, othelloGame.getGameBoard().getGameBoardObjectiveIndexes(getStateBaseObjective(getBoardCellState(PlayerType.PLAYER_ONE))),false);
+						
+						currentTurn = PlayerTurn.PLAYER_ONE;
+						
+						Platform.runLater(()->{
+							for(IndexWrapper move: whitePossibleCells.getIndexes()){
+								callbackController.showPossibleMove(PlayerType.PLAYER_ONE, move);	
+							}
+							
+						});
+						
+						othello.setAgentMove();
+					}else{
+						System.out.println("NO MORE MOVES CAN BE MADE!");
+						determineWinner(whiteCount, blackCount);
+					}
+				}
+				break;
+		}
 	}
 
 	private void determineWinner(long whiteCount, long blackCount) {
@@ -361,14 +374,7 @@ public class GameController {
 			return PlayerType.PLAYER_TWO;
 		}
 	}
-	
-	private void switchTurn(){
-//		if(currentTurn == PlayerTurn.PLAYER_ONE){
-//			currentTurn = PlayerTurn.PLAYER_TWO;
-//		}else{
-//			currentTurn = PlayerTurn.PLAYER_ONE;
-//		}
-	}
+
 	
 	private void notifyEndState(GameEndState endState) {
 		Platform.runLater(()->{
@@ -409,15 +415,20 @@ public class GameController {
 					for(IndexWrapper index: whitePossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.showPossibleCell(PlayerType.PLAYER_ONE, index);
+						}else{
+							callbackController.hidePossibleCell(PlayerType.PLAYER_ONE, index);
 						}
 					}
 				}
+				
 				break;
 			case PLAYER_TWO:
 				if(blackPossibleCells != null){
 					for(IndexWrapper index: blackPossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.showPossibleCell(PlayerType.PLAYER_TWO, index);
+						}else{
+							callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, index);
 						}
 					}
 				}
@@ -456,6 +467,7 @@ public class GameController {
 			}
 		}
 
+	
 		@SuppressWarnings("unused")
 		@Override
 		public void setMousePressedEvent(MouseEvent e, int row, int col) {
@@ -467,8 +479,7 @@ public class GameController {
 					for(IndexWrapper index: whitePossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							makeMove(getPlayerType(currentTurn),row,col);
-							
-							switchTurn();
+						
 						}
 					}
 				}
@@ -481,8 +492,6 @@ public class GameController {
 							
 							if(OthelloSettings.USE_AI_AGENT){
 								othello.setAgentMove();
-							}else{
-								switchTurn();							
 							}
 						}
 					}
@@ -533,28 +542,24 @@ public class GameController {
 		}
 	}
 
-	public void setAgentMove(MoveWrapper move) {
-//		System.out.println(move);
+	public void setAgentMove(AbstractMove move) {
+		if(timerControl != null){
+			timerControl.stopTimer(true);
+		}
 		
 		if(move.isValid()){
 			makeMove(getPlayerType(PlayerTurn.PLAYER_ONE),move.getMoveIndex().getRow(),move.getMoveIndex().getCol());
 		}else{
-			this.othelloGame.getGameBoard().resetBuildTrails(BoardCellState.ANY);
 			
-			computeAvailableMoves(PlayerType.PLAYER_TWO, BoardCellState.BLACK);
-
-			storeAvailableCells(PlayerType.PLAYER_TWO, othelloGame.getGameBoard().getGameBoardObjectiveIndexes(getStateBaseObjective(getBoardCellState(PlayerType.PLAYER_TWO))),false);
+			long whiteCount = othelloGame.getGameBoard().getCount(BoardCellState.WHITE);
+			long blackCount = othelloGame.getGameBoard().getCount(BoardCellState.BLACK);
 			
-			updateGameScore();	
+			this.resolvePlayerMove(whiteCount, blackCount);
 			
-			currentTurn = PlayerTurn.PLAYER_TWO;
-			
-			ThreadManager.schedule(TimeSpan.millis(2000), ()->{
+			timerControl = ThreadTimer.schedule(TimeSpan.millis(2000), ()->{
 				evaluateGame(othelloGame.getGameBoard().getGameState());
 			});
-
 		}
-		switchTurn();
 	}
 
 	public void passInformation(int depthCounter, int leafCounter, int pruneCounter, int nodesExamined) {

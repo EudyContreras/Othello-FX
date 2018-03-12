@@ -12,8 +12,8 @@ import com.eudycontreras.othello.enumerations.TraversalCardinal;
  * <H2>Class description</H2>
  * Class which encapsulates information about a path
  * start point, destination and direction.
+ * 
  * @author Eudy Contreras
- *
  */
 public class TraversalWrapper {
 

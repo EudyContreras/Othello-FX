@@ -27,6 +27,8 @@ import javafx.util.Duration;
  *
  * Provides factory methods for timers that are manipulated from and execute
  * their action on the JavaFX application thread.
+ * 
+ * @author Eudy Contreras
  */
 public class FXTimer<T> implements ITimer {
 

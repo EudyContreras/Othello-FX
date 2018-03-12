@@ -10,6 +10,7 @@ import com.eudycontreras.othello.controllers.AgentController.DeepeningType;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
  * @author Eudy Contreras
  *
  */
@@ -21,17 +22,17 @@ public class Settings {
 	/**
 	 * Used for defining the maximum search time
 	 */
-	public static final int MAX_SEARCH_TIME = 3000;
+	public static final int MAX_SEARCH_TIME = 4000;
 	
 	/**
 	 * Used for defining the minimum search time
 	 */
-	public static final int MIN_SEARCH_TIME = 500;
+	public static final int MIN_SEARCH_TIME = 1200;
 	
 	/**
 	 * Used for defining the search time
 	 */
-	public static final int SEARCH_TIME = 3000;
+	public static final int SEARCH_TIME = 2500;
 	
 	/**
 	 * Used for defining the maximum value
@@ -67,6 +68,7 @@ public class Settings {
 	 * The size of the board:
 	 * The size can be 4, 6, or 8 any other value
 	 * will be converted to the closest valid value
+	 * The default size of the Othello board is 8x8
 	 */
 	public static final int BOARD_GRID_SIZE = 8;
 	/**

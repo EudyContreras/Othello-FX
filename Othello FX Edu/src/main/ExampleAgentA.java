@@ -1,20 +1,29 @@
 package main;
 
-import com.eudycontreras.othello.capsules.MoveWrapper;
+import com.eudycontreras.othello.capsules.AbstractMove;
 import com.eudycontreras.othello.controllers.AgentController;
 import com.eudycontreras.othello.controllers.AgentMove;
-import com.eudycontreras.othello.controllers.IAgentMove;
 import com.eudycontreras.othello.models.GameBoardState;
 import com.eudycontreras.othello.threading.ThreadManager;
 import com.eudycontreras.othello.threading.TimeSpan;
 
-public class AgentA extends AgentMove implements IAgentMove{
-
+/**
+ * <H2>Created by</h2> Eudy Contreras
+ * <h4> Mozilla Public License 2.0 </h4>
+ * Licensed under the Mozilla Public License 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
+ * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
+ */
+public class ExampleAgentA extends AgentMove{
 	/**
 	 * Delete the content of this method and Implement your logic here!
 	 */
 	@Override
-	public MoveWrapper getMove(GameBoardState gameState) {
+	public AbstractMove getMove(GameBoardState gameState) {
 		return getExampleMove(gameState);
 	}
 	
@@ -26,8 +35,9 @@ public class AgentA extends AgentMove implements IAgentMove{
 	 * @param gameState
 	 * @return
 	 */
-	private MoveWrapper getExampleMove(GameBoardState gameState){
-		int waitTime = 500; // 1.5 seconds
+	private AbstractMove getExampleMove(GameBoardState gameState){
+		
+		int waitTime = Settings.MIN_SEARCH_TIME; // 1.5 seconds
 		
 		ThreadManager.pause(TimeSpan.millis(waitTime)); // Pauses execution for the wait time to cause delay
 		

@@ -11,6 +11,8 @@ import com.eudycontreras.othello.models.GameBoard;
  * You may obtain a copy of the License at
  * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
  * <H2>Class description</H2>
+ * 
+ * @author Eudy Contreras
  */
 public class OthelloGame {
 
