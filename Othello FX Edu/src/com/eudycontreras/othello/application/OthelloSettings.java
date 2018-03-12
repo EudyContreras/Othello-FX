@@ -1,6 +1,6 @@
 package com.eudycontreras.othello.application;
 
-import main.Settings;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -16,25 +16,25 @@ import main.Settings;
 public class OthelloSettings {
 	
 
-	public static final String PLAYER_ONE = getPlayerOneName(Settings.PLAYER_ONE);
-	public static final String PLAYER_TWO = getPlayerTwoName(Settings.PLAYER_TWO);
+	public static final String PLAYER_ONE = getPlayerOneName(UserSettings.PLAYER_ONE);
+	public static final String PLAYER_TWO = getPlayerTwoName(UserSettings.PLAYER_TWO);
 	public static final String STYLESHEET = "application.css";
 	public static final String GAME_NAME = "Othello";
 	
 	public static boolean DEBUG_GAME = false;
 
-	public static final boolean USE_AI_AGENT = Settings.USE_AI_AGENT;
+	public static final boolean USE_AI_AGENT = UserSettings.USE_AI_AGENT;
 
 	public static final int DEFAULT_MENU_WIDTH = 200;
 	public static final int DEFAULT_BOARD_SIZE = 800;
 
-	public static final int BOARD_GRID_SIZE = Settings.BOARD_GRID_SIZE;
+	public static final int BOARD_GRID_SIZE = UserSettings.BOARD_GRID_SIZE;
 	public static final int DEFAULT_BOARD_GRID_SIZE = getBoardSize(BOARD_GRID_SIZE);
 	
-	public static final double SCENE_SCALE = Settings.GAME_WINDOW_SCALE;
+	public static final double SCENE_SCALE = UserSettings.GAME_WINDOW_SCALE;
 	public static final double CELL_SIZE = getCellSize(DEFAULT_BOARD_GRID_SIZE);
 	
-	public static final int THEME = Settings.THEME_INDEX;
+	public static final int THEME = UserSettings.THEME_INDEX;
 	
 	private static final double getCellSize(int boardSize){
 		if(boardSize == 4){

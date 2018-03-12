@@ -23,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -215,17 +216,22 @@ public class GameBoardView extends StackPane {
 	}
 	
 	public void applyTraversableEffect(PieceType type, int row, int col){
-		ScaleTransition scaleCell = new ScaleTransition();
+		if(UserSettings.USE_ANIMATION){
+			ScaleTransition scaleCell = new ScaleTransition();
+			
+			scaleCell.setNode(gameCellSlot[row][col]);
+			scaleCell.setDuration(Duration.millis(170));
+			scaleCell.setInterpolator(Interpolator.EASE_OUT);
+			scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
+			scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
+			scaleCell.setToX(1.1);
+			scaleCell.setToY(1.1);
+			scaleCell.play();
+		}else{
+			gameCellSlot[row][col].setScaleX(1.1);
+			gameCellSlot[row][col].setScaleY(1.1);
+		}
 		
-		scaleCell.setNode(gameCellSlot[row][col]);
-		scaleCell.setDuration(Duration.millis(170));
-		scaleCell.setInterpolator(Interpolator.EASE_OUT);
-		scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
-		scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
-		scaleCell.setToX(1.1);
-		scaleCell.setToY(1.1);
-		scaleCell.play();
-
 		gameCellSlot[row][col].toFront();
 		gameCellSlot[row][col].setEffect(shadow);
 		switch(type){
@@ -247,16 +253,21 @@ public class GameBoardView extends StackPane {
 	public void removeTraversableEffect(PieceType type,int row, int col){
 		scale.stop();
 
-		ScaleTransition scaleCell = new ScaleTransition();
-		
-		scaleCell.setNode(gameCellSlot[row][col]);
-		scaleCell.setDuration(Duration.millis(170));
-		scaleCell.setInterpolator(Interpolator.EASE_OUT);
-		scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
-		scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
-		scaleCell.setToX(1);
-		scaleCell.setToY(1);
-		scaleCell.play();
+		if(UserSettings.USE_ANIMATION){
+			ScaleTransition scaleCell = new ScaleTransition();
+			
+			scaleCell.setNode(gameCellSlot[row][col]);
+			scaleCell.setDuration(Duration.millis(170));
+			scaleCell.setInterpolator(Interpolator.EASE_OUT);
+			scaleCell.setFromX(gameCellSlot[row][col].getScaleX());
+			scaleCell.setFromY(gameCellSlot[row][col].getScaleY());
+			scaleCell.setToX(1);
+			scaleCell.setToY(1);
+			scaleCell.play();
+		}else{
+			gameCellSlot[row][col].setScaleX(1);
+			gameCellSlot[row][col].setScaleY(1);
+		}
 		
 		gameCellSlot[row][col].setEffect(null);
 		gameCellSlot[row][col].getChildren().remove(blackShadow);

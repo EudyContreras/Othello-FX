@@ -13,6 +13,7 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import main.UserSettings;
 
 
 /**
@@ -86,14 +87,19 @@ public class GamePieceView extends Circle
 			scale.setDelay(Duration.millis(popDelay));
 			scale.play();
 		}else{
-			scale.setNode(this);
-			scale.setDuration(Duration.millis(300));
-			scale.setFromX(0);
-			scale.setFromY(0);
-			scale.setToX(1);
-			scale.setToY(1);
-			scale.setDelay(Duration.millis(popDelay));
-			scale.play();
+			if(UserSettings.USE_ANIMATION){
+				scale.setNode(this);
+				scale.setDuration(Duration.millis(300));
+				scale.setFromX(0);
+				scale.setFromY(0);
+				scale.setToX(1);
+				scale.setToY(1);
+				scale.setDelay(Duration.millis(popDelay));
+				scale.play();
+			}else{
+				this.setScaleX(1);
+				this.setScaleY(1);
+			}
 		}
 		
 		setEffect(dropShadow);
@@ -127,6 +133,16 @@ public class GamePieceView extends Circle
 	}
 
 	public void removeFromBoard(Runnable script) {
+		
+		if(!UserSettings.USE_ANIMATION){
+			if(action != null){
+				action.run();
+			}
+			
+			if(script != null){
+				script.run();
+			}
+		}
 		ScaleTransition scale = new ScaleTransition(Duration.millis(250));
 		scale.setNode(this);
 		scale.setFromX(1);

@@ -23,7 +23,7 @@ import com.eudycontreras.othello.utilities.GameTreeUtility;
 import com.eudycontreras.othello.utilities.TraversalUtility;
 
 import javafx.application.Platform;
-import main.Settings;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -39,7 +39,7 @@ import main.Settings;
  */
 public class AgentController {
 
-	public static final DeepeningType DEEPENING = Settings.DEEPENING;
+	public static final DeepeningType DEEPENING = UserSettings.DEEPENING;
 
 	public static final boolean PRINT_BOARD_STATES = false;
 	
@@ -84,8 +84,8 @@ public class AgentController {
 
 	public static final int MAX_SEARCH_DEPTH = getMaximumDepth(DEEPENING);
 
-	public static final int MAX_VALUE = Settings.MAX_VALUE;
-	public static final int MIN_VALUE = Settings.MIN_VALUE;
+	public static final int MAX_VALUE = UserSettings.MAX_VALUE;
+	public static final int MIN_VALUE = UserSettings.MIN_VALUE;
 	
 	private Othello othello;
 	

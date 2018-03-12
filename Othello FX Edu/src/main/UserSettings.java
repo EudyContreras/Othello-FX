@@ -14,7 +14,7 @@ import com.eudycontreras.othello.controllers.AgentController.DeepeningType;
  * @author Eudy Contreras
  *
  */
-public class Settings {
+public class UserSettings {
 	/**
 	 * If deepening logic is use please define here
 	 */
@@ -51,6 +51,12 @@ public class Settings {
 	 */
 	public static final String PLAYER_TWO = "Yang";
 	/**
+	 * Determines whether or not animations should be used
+	 * when changing from one chip color to another. The animation
+	 * of several chips may reduce performance on some systems
+	 */
+	public static final boolean USE_ANIMATION = true;
+	/**
 	 * This defines if the AI agent should
 	 * be used or not. If false the game will
 	 * be started in two human player mode.
@@ -78,6 +84,7 @@ public class Settings {
 	 * cycle through themes in game
 	 */
 	public static final int THEME_INDEX = 0;
+	
 
 
 }

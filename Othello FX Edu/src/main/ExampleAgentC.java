@@ -38,7 +38,7 @@ public class ExampleAgentC extends AgentMove{
 	 */
 	private AbstractMove getExampleMove(GameBoardState gameState){
 		
-		int waitTime = Settings.MIN_SEARCH_TIME;
+		int waitTime = UserSettings.MIN_SEARCH_TIME;
 		
 		ThreadManager.pause(TimeSpan.millis(waitTime)); // Pauses execution for the wait time to cause delay
 		
