@@ -462,6 +462,11 @@ public class OthelloGameView{
 		}
 
 		@Override
+		public void hidePossibleCell(PlayerType player, IndexWrapper index, boolean state) {
+			gameBoardView.removeTraversableEffect(getPieceType(player), index.getRow(), index.getCol(), state);
+		}
+		
+		@Override
 		public void convertEnclosedCells(GameBoardCell gameBoardCell) {
 			
 			TrailWrapper trailWrapper = gameBoardCell.getTrailWrapper();

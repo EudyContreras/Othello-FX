@@ -416,7 +416,7 @@ public class GameController {
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.showPossibleCell(PlayerType.PLAYER_ONE, index);
 						}else{
-							callbackController.hidePossibleCell(PlayerType.PLAYER_ONE, index);
+							callbackController.hidePossibleCell(PlayerType.PLAYER_ONE, index, true);
 						}
 					}
 				}
@@ -428,7 +428,7 @@ public class GameController {
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.showPossibleCell(PlayerType.PLAYER_TWO, index);
 						}else{
-							callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, index);
+							callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, index, true);
 						}
 					}
 				}

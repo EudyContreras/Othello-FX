@@ -35,6 +35,8 @@ public interface EventCallbackController {
 	void showPossibleCell(PlayerType player, IndexWrapper index);
 
 	void hidePossibleCell(PlayerType playerOne, IndexWrapper index);
+	
+	void hidePossibleCell(PlayerType playerOne, IndexWrapper index, boolean state);
 
 	void convertEnclosedCells(GameBoardCell gameBoardCell);
 

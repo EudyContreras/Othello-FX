@@ -45,11 +45,11 @@ public class UserSettings {
 	/**
 	 * The name of the player one : White player
 	 */
-	public static final String PLAYER_ONE = "Ying";
+	public static final String PLAYER_ONE = "Maja";
 	/**
 	 * The name of the player two : Black player
 	 */
-	public static final String PLAYER_TWO = "Yang";
+	public static final String PLAYER_TWO = "Eudy";
 	/**
 	 * Determines whether or not animations should be used
 	 * when changing from one chip color to another. The animation
@@ -61,7 +61,7 @@ public class UserSettings {
 	 * be used or not. If false the game will
 	 * be started in two human player mode.
 	 */
-	public static final boolean USE_AI_AGENT = true;
+	public static final boolean USE_AI_AGENT = false;
 	/**
 	 * This defines the scale at which the
 	 * game is rendered. This options helps 

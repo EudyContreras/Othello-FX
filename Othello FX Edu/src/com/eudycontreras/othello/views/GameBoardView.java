@@ -251,8 +251,10 @@ public class GameBoardView extends StackPane {
 	}
 	
 	public void removeTraversableEffect(PieceType type,int row, int col){
-		scale.stop();
-
+		removeTraversableEffect(type,row,col,false);
+	}
+	
+	public void removeTraversableEffect(PieceType type,int row, int col, boolean state){
 		if(UserSettings.USE_ANIMATION){
 			ScaleTransition scaleCell = new ScaleTransition();
 			
@@ -267,11 +269,17 @@ public class GameBoardView extends StackPane {
 		}else{
 			gameCellSlot[row][col].setScaleX(1);
 			gameCellSlot[row][col].setScaleY(1);
+
+		}
+		gameCellSlot[row][col].setEffect(null);
+		
+		if(!state){
+			scale.stop();
+
+			gameCellSlot[row][col].getChildren().remove(blackShadow);
+			gameCellSlot[row][col].getChildren().remove(whiteShadow);
 		}
 		
-		gameCellSlot[row][col].setEffect(null);
-		gameCellSlot[row][col].getChildren().remove(blackShadow);
-		gameCellSlot[row][col].getChildren().remove(whiteShadow);
 	}
 	
 	public void setPiece(PieceType type, int row, int col){
