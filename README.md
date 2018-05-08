@@ -182,7 +182,7 @@ This project is licensed under the MIT License - see the [Licence](LICENSE.md) f
 ------------
     The MIT License (MIT)
     
-    Copyright (c) 2016 Chad Song 
+    Copyright (c) 2018 Eudy Contreras
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
