@@ -13,8 +13,6 @@ The game allows you to implement and add your own AI agents which you will then 
 * Humna Player vs AI Agent
 * AI Agent vs AI Agent.
 
-The game also .
-
 
 ![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX.png)
 
