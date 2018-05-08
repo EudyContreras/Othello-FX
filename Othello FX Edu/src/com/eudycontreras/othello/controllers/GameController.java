@@ -27,6 +27,7 @@ import com.eudycontreras.othello.utilities.TraversalUtility;
 
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -142,7 +143,7 @@ public class GameController {
 		
 		updateGameScore();	
 		
-		timerControl = ThreadTimer.schedule(TimeSpan.millis(2000), ()->{
+		timerControl = ThreadTimer.schedule(TimeSpan.millis(UserSettings.USE_ANIMATION ? 1400 : 150), ()->{
 			evaluateGame(othelloGame.getGameBoard().getGameState());
 		});
 		
@@ -556,7 +557,7 @@ public class GameController {
 			
 			this.resolvePlayerMove(whiteCount, blackCount);
 			
-			timerControl = ThreadTimer.schedule(TimeSpan.millis(2000), ()->{
+			timerControl = ThreadTimer.schedule(TimeSpan.millis(UserSettings.USE_ANIMATION ? 1400 : 150), ()->{
 				evaluateGame(othelloGame.getGameBoard().getGameState());
 			});
 		}

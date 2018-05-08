@@ -28,6 +28,7 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import main.UserSettings;
 
 
 /**
@@ -168,6 +169,16 @@ public class GameAboutView extends Group {
 
 	private void animateShow(int miliseconds) {
 
+		if(!UserSettings.USE_ANIMATION){
+			setVisible(true);
+			setMouseTransparent(false);
+			this.setScaleX(1);
+			this.setScaleY(1);
+			this.setOpacity(1);
+		
+			return;
+		}
+		
 		ScaleTransition scaleTransition = new ScaleTransition();
 
 		FadeTransition fadeTransition = new FadeTransition();
@@ -196,6 +207,15 @@ public class GameAboutView extends Group {
 	}
 
 	private void animateHide(int miliseconds) {
+		if(!UserSettings.USE_ANIMATION){
+			this.setScaleX(0);
+			this.setScaleY(0);
+			this.setOpacity(0);
+			setMouseTransparent(true);
+			setVisible(false);
+			setShowing(false);
+			return;
+		}
 		ScaleTransition scaleTransition = new ScaleTransition();
 
 		FadeTransition fadeTransition = new FadeTransition();

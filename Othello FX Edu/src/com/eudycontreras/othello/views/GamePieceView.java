@@ -3,9 +3,12 @@ package com.eudycontreras.othello.views;
 import java.util.Random;
 
 import com.eudycontreras.othello.enumerations.PieceType;
+import com.eudycontreras.othello.threading.ThreadManager;
+import com.eudycontreras.othello.threading.TimeSpan;
 
 import javafx.animation.RotateTransition;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
@@ -69,8 +72,15 @@ public class GamePieceView extends Circle
 		dropShadow.setOffsetY(6.0);
 		dropShadow.setBlurType(BlurType.THREE_PASS_BOX);
 	
+		setEffect(dropShadow);
+		
 		if(initial){
 			
+			if(!UserSettings.USE_ANIMATION){
+				this.setScaleX(1);
+				this.setScaleY(1);
+				return;
+			}
 			rotate.setNode(this);
 			rotate.setDuration(Duration.millis(duration));
 			rotate.setAxis(Rotate.Z_AXIS);
@@ -102,7 +112,7 @@ public class GamePieceView extends Circle
 			}
 		}
 		
-		setEffect(dropShadow);
+		
 
 	}
 	   
@@ -135,6 +145,8 @@ public class GamePieceView extends Circle
 	public void removeFromBoard(Runnable script) {
 		
 		if(!UserSettings.USE_ANIMATION){
+			this.setScaleX(0);
+			this.setScaleY(0);
 			if(action != null){
 				action.run();
 			}
@@ -142,7 +154,10 @@ public class GamePieceView extends Circle
 			if(script != null){
 				script.run();
 			}
+			return;
 		}
+		
+	
 		ScaleTransition scale = new ScaleTransition(Duration.millis(250));
 		scale.setNode(this);
 		scale.setFromX(1);

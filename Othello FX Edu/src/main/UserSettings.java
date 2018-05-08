@@ -51,11 +51,12 @@ public class UserSettings {
 	 */
 	public static final String PLAYER_TWO = "Eudy";
 	/**
-	 * Determines whether or not animations should be used
-	 * when changing from one chip color to another. The animation
-	 * of several chips may reduce performance on some systems
+	 * Determines whether or not animations should be used 
+	 * The animations may reduce performance on some systems. 
+	 * Specially on systems running other OS than windows. This
+	 * is off by default.
 	 */
-	public static final boolean USE_ANIMATION = true;
+	public static final boolean USE_ANIMATION = false;
 	/**
 	 * This defines if the AI agent should
 	 * be used or not. If false the game will
@@ -68,8 +69,9 @@ public class UserSettings {
 	 * for cases where the game resolution is either
 	 * too big or to small recommended values range
 	 * from 0.4 to 1.4 and a value of 1.0 is default
+	 * Play around to find your sweet spot.
 	 */
-	public static final double GAME_WINDOW_SCALE = 1.0;
+	public static final double GAME_WINDOW_SCALE = 1d;
 	/**
 	 * The size of the board:
 	 * The size can be 4, 6, or 8 any other value

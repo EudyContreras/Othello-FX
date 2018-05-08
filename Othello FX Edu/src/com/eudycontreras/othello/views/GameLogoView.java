@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -69,6 +70,9 @@ public class GameLogoView extends HBox {
 	}
 
 	public void showLogos() {
+		if(!UserSettings.USE_ANIMATION){
+			return;
+		}
 		ScaleTransition scale = new ScaleTransition(Duration.millis(1000));
 		scale.setNode(javaFX);
 		scale.setFromX(1);

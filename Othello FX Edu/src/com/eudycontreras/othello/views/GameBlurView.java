@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -93,6 +94,10 @@ public class GameBlurView {
 	}
 
 	public void applyBlurAnimation(){
+		if(!UserSettings.USE_ANIMATION){
+			applyBlur();
+			return;
+		}
 		this.createOverlay();
 		this.showOverlay();
 		this.valueAnimator.setDelay(400);
@@ -107,7 +112,19 @@ public class GameBlurView {
 		this.valueAnimator.play();
 	}
 	
+	public void applyBlur(){
+		this.createOverlay();
+		this.showOverlay();
+		blurEndAction.run();
+		blurEffect.setRadius(42);
+	}
+	
 	public void revertBlurAnimation(Runnable script){
+		
+		if(!UserSettings.USE_ANIMATION){
+			revertBlur(script);
+			return;
+		}
 		this.valueAnimator.stop();
 		this.valueAnimator.setDuration(FXSpan.millis(700));
 		this.valueAnimator.setFrom(42);
@@ -127,5 +144,14 @@ public class GameBlurView {
 		this.valueAnimator.play();
 	}
 	
-	
+	public void revertBlur(Runnable script){
+		blurEffect.setRadius(0);
+		hideOverlay();
+		if(revertAction != null){
+			revertAction.run();
+		}
+		if(script != null){
+			script.run();
+		}
+	}
 }

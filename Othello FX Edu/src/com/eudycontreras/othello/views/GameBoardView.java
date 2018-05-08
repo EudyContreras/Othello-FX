@@ -208,11 +208,19 @@ public class GameBoardView extends StackPane {
 	
 	public void removePossibleMoveEffect(){	
 		for(GameMoveIndicator indicator: indicators){
+			
 			indicator.removeFromBoard(()->{
 				gameCellSlot[indicator.getRowIndex()][indicator.getColIndex()].getChildren().remove(indicator);
+				
+				if(UserSettings.USE_ANIMATION)
 				indicators.remove(indicator);
 			});
 		}	
+		
+		if(!UserSettings.USE_ANIMATION){
+			indicators.clear();
+		}
+		
 	}
 	
 	public void applyTraversableEffect(PieceType type, int row, int col){
@@ -237,13 +245,18 @@ public class GameBoardView extends StackPane {
 		switch(type){
 		case BLACK:
 			gameCellSlot[row][col].getChildren().add(1,blackShadow);
+			
+			if(UserSettings.USE_ANIMATION){
 			scale.setNode(blackShadow);
 			scale.play();
+			}
 			break;
 		case WHITE:
 			gameCellSlot[row][col].getChildren().add(1,whiteShadow);
+			if(UserSettings.USE_ANIMATION){
 			scale.setNode(whiteShadow);
 			scale.play();
+			}
 			break;
 		default:
 			break;
@@ -327,6 +340,18 @@ public class GameBoardView extends StackPane {
 		
 		for(GamePieceView piece : pieces){
 			piece.removeFromBoard(null);
+		}
+		
+		if(!UserSettings.USE_ANIMATION){
+			pieces.clear();
+
+			if(UserSettings.USE_ANIMATION){
+				othelloGame.getViewCallback().resetBoard(delay);
+			}else{
+				othelloGame.getViewCallback().resetBoard(0);
+			}
+			
+			return;
 		}
 		
 		if(!pieces.isEmpty())

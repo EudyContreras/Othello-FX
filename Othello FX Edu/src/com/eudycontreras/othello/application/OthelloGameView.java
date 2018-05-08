@@ -40,6 +40,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -122,7 +123,7 @@ public class OthelloGameView{
 	            }
 	        });
 			
-			scene = new Scene(root,Color.TRANSPARENT);	
+			scene = new Scene(root, UserSettings.USE_ANIMATION ? Color.TRANSPARENT : Color.BLACK);	
 			scene.getStylesheets().add(getClass().getResource(OthelloSettings.STYLESHEET).toExternalForm());
 			
 		} catch (Exception e) {
@@ -194,12 +195,17 @@ public class OthelloGameView{
 		filler.setFill(themes[index]);
       
 		root.setId("game");
-		root.setOpacity(0);
-		root.setScaleX(0);
-		root.setScaleY(0);
+	
 		
 		primaryStage.setTitle(OthelloSettings.GAME_NAME);
-		primaryStage.initStyle(StageStyle.TRANSPARENT);
+		if(UserSettings.USE_ANIMATION){
+			root.setOpacity(0);
+			root.setScaleX(0);
+			root.setScaleY(0);
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
+		}else{
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+		}
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
@@ -279,59 +285,71 @@ public class OthelloGameView{
 	public void openGame(Runnable script) {
 		showOverlay();
 		
-		ScaleTransition scale = new ScaleTransition(Duration.millis(700));
-		scale.setNode(root);
-		scale.setFromX(0.55);
-		scale.setFromY(0.55);
-		scale.setToX(OthelloSettings.SCENE_SCALE);
-		scale.setToY(OthelloSettings.SCENE_SCALE);
-		scale.setDelay(Duration.millis(50));
-		scale.play();
-		
-		FadeTransition fade = new FadeTransition(Duration.millis(600));
-		fade.setNode(root);
-		fade.setFromValue(0);
-		fade.setToValue(1);
-		fade.setDelay(Duration.millis(50));
-		fade.setOnFinished(e ->{
+		if (UserSettings.USE_ANIMATION) {
+			ScaleTransition scale = new ScaleTransition(Duration.millis(700));
+			scale.setNode(root);
+			scale.setFromX(0.55);
+			scale.setFromY(0.55);
+			scale.setToX(OthelloSettings.SCENE_SCALE);
+			scale.setToY(OthelloSettings.SCENE_SCALE);
+			scale.setDelay(Duration.millis(50));
+			scale.play();
+
+			FadeTransition fade = new FadeTransition(Duration.millis(600));
+			fade.setNode(root);
+			fade.setFromValue(0);
+			fade.setToValue(1);
+			fade.setDelay(Duration.millis(50));
+			fade.setOnFinished(e -> {
+				if (script != null) {
+					hideOverlay();
+					gameMenuView.showLogos();
+					script.run();
+				}
+			});
+			fade.play();
+		}else{
 			if(script!=null){
 				hideOverlay(); 
 				gameMenuView.showLogos();
 				script.run();
 			}
-		});
-		fade.play();
+		}
 
 	}
 	
 	public void closeGame() {
 		
-		ScaleTransition scale = new ScaleTransition(Duration.millis(300));
-		scale.setNode(root);
-		scale.setFromX(OthelloSettings.SCENE_SCALE);
-		scale.setFromY(OthelloSettings.SCENE_SCALE);
-		scale.setToX(0.5);
-		scale.setToY(0.5);
-		scale.play();
-		
-		FadeTransition fade = new FadeTransition(Duration.millis(300));
-		fade.setNode(root);
-		fade.setFromValue(1);
-		fade.setToValue(0);
-		fade.play();
-		fade.setOnFinished(e->{
-			Thread thread = new Thread(()->{
-				try {
-					Thread.sleep(200);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				System.exit(0);
+		if (UserSettings.USE_ANIMATION) {
+			ScaleTransition scale = new ScaleTransition(Duration.millis(300));
+			scale.setNode(root);
+			scale.setFromX(OthelloSettings.SCENE_SCALE);
+			scale.setFromY(OthelloSettings.SCENE_SCALE);
+			scale.setToX(0.5);
+			scale.setToY(0.5);
+			scale.play();
+
+			FadeTransition fade = new FadeTransition(Duration.millis(300));
+			fade.setNode(root);
+			fade.setFromValue(1);
+			fade.setToValue(0);
+			fade.play();
+			fade.setOnFinished(e -> {
+				Thread thread = new Thread(() -> {
+					try {
+						Thread.sleep(200);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					System.exit(0);
+				});
+
+				thread.setDaemon(true);
+				thread.start();
 			});
-			
-			thread.setDaemon(true);
-			thread.start();
-		});
+		} else {
+			System.exit(0);
+		}
 	}
 
 	
@@ -369,7 +387,11 @@ public class OthelloGameView{
 		}
 		
 		gameAboutView.setShowing(true);
-		gameBlurView.applyBlurAnimation();
+		if(UserSettings.USE_ANIMATION){
+			gameBlurView.applyBlurAnimation();
+		}else{
+			gameBlurView.applyBlur();
+		}
 		overScreen.toFront();
 		gameAboutView.showAboutView();
 	}
@@ -434,7 +456,6 @@ public class OthelloGameView{
 			}
 			
 			gameOverView.setShowing(true);
-			gameBlurView.applyBlurAnimation();
 			overScreen.toFront();
 			switch(endState){
 			case WHITE_WINS:			
@@ -449,6 +470,7 @@ public class OthelloGameView{
 			default:
 				break;
 			}
+			gameBlurView.applyBlurAnimation();
 		}
 
 		@Override

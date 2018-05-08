@@ -6,6 +6,7 @@ import javafx.animation.FadeTransition;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -60,6 +61,10 @@ public class GameMoveIndicator extends Circle
 	}
 
 	public void fadeIn() {
+		if(!UserSettings.USE_ANIMATION){
+			this.setOpacity(1);
+			return;
+		}
 		FadeTransition fade = new FadeTransition(Duration.millis(250));
 		fade.setNode(this);
 		fade.setFromValue(0);
@@ -68,6 +73,15 @@ public class GameMoveIndicator extends Circle
 	}
 	
 	public void removeFromBoard(Runnable script) {
+		
+		if(!UserSettings.USE_ANIMATION){
+			this.setOpacity(0);
+			if(script != null){
+				script.run();
+			}
+			return;
+		}
+		
 		FadeTransition fade = new FadeTransition(Duration.millis(400));
 		fade.setNode(this);
 		fade.setFromValue(1);

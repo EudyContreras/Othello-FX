@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -206,6 +207,13 @@ public class GameOverView extends Group {
 	}
 	
 	private void animateShow(int miliseconds){
+		
+		if(!UserSettings.USE_ANIMATION){
+			this.setOpacity(1);
+			this.setScaleX(1);
+			this.setScaleY(1);
+			return;
+		}
 
 		ScaleTransition scaleTransition = new ScaleTransition();
 		
@@ -235,6 +243,20 @@ public class GameOverView extends Group {
 	}
 	
 	private void animateHide(int miliseconds){
+		
+		if(!UserSettings.USE_ANIMATION){
+			this.setOpacity(0);
+			this.setScaleX(0);
+			this.setScaleY(0);
+			
+			setMouseTransparent(true);
+			setVisible(false);
+			setShowing(false);
+			
+			return;
+		}
+
+		
 		ScaleTransition scaleTransition = new ScaleTransition();
 		
 		FadeTransition fadeTransition = new FadeTransition();
