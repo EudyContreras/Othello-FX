@@ -1,6 +1,7 @@
 
 package com.eudycontreras.othello.views;
 
+import com.eudycontreras.othello.application.OthelloGameView;
 import com.eudycontreras.othello.enumerations.PieceType;
 import com.eudycontreras.othello.enumerations.PlayerType;
 
@@ -44,14 +45,18 @@ public class GameScoreView extends StackPane{
 
 	private StackPane background = new StackPane();
 
+	private OthelloGameView gameView;
+	
 	private DropShadow textGlow;
 
-	public GameScoreView(String playerOne, String playerTwo, double width, double height) {
+	public GameScoreView(OthelloGameView gameView, double width, double height) {
+		this.gameView = gameView;
+		
 		this.playerChip[0] = new GamePieceView(PieceType.WHITE, 25, 0,0,0);
 		this.playerChip[1] = new GamePieceView(PieceType.BLACK, 25, 0,0,0);
 		
-		this.playerName[0] = new Text(playerOne);
-		this.playerName[1] = new Text(playerTwo);
+		this.playerName[0] = new Text(gameView.getPlayerOne());
+		this.playerName[1] = new Text(gameView.getPlayerTwo());
 		
 		this.playerScore[0] = new Text();
 		this.playerScore[1] = new Text();
@@ -159,6 +164,8 @@ public class GameScoreView extends StackPane{
 	}
 	
 	public void updateBoardScore(int playerOne, int playerTwo){
+		playerName[0].setText(gameView.getPlayerOne());
+		playerName[1].setText(gameView.getPlayerTwo());
 		updatePlayerScore(PlayerType.PLAYER_ONE, playerOne);
 		updatePlayerScore(PlayerType.PLAYER_TWO, playerTwo);
 	}

@@ -47,6 +47,8 @@ public class GameOverView extends Group {
 	
 	private GameScoreView gameScoreView;
 	
+	private OthelloGameView gameView;
+	
 	private StackPane centerBoard = new StackPane();
 	
 	private StackPane centerLayout = new StackPane();
@@ -60,8 +62,8 @@ public class GameOverView extends Group {
 	
 	private boolean showing = false;
 	
-	public GameOverView(){	
-		
+	public GameOverView(OthelloGameView gameView){	
+		this.gameView = gameView;
 		layout.getChildren().add(boxLayout);
 		
 		centerLayout.getChildren().add(centerBoard);
@@ -83,7 +85,9 @@ public class GameOverView extends Group {
 	}
 
 	public void initialize(OthelloGameView gameView, double width, double height){
-		gameScoreView = new GameScoreView("Player One", "Player Two", width*0.9, height*1.1);
+		this.gameView = gameView;
+		
+		gameScoreView = new GameScoreView(gameView, width*0.9, height*1.1);
 		gameScoreView.showFrame(false);
 		gameScoreView.setSpacing(3);
 		gameScoreView.setBorderColor(Color.rgb(60, 120, 0));
@@ -123,7 +127,7 @@ public class GameOverView extends Group {
 	}
 	
 	public void initialize(double width, double height){
-		gameScoreView = new GameScoreView("Player One", "Player Two", width*0.9, height*1.1);
+		gameScoreView = new GameScoreView(gameView, width*0.9, height*1.1);
 		gameScoreView.showFrame(false);
 		gameScoreView.setSpacing(3);
 		gameScoreView.setBorderColor(Color.rgb(60, 120, 0));
@@ -178,10 +182,10 @@ public class GameOverView extends Group {
 		
 		switch(type){
 		case WHITE:
-			winnerLabel.setText(OthelloSettings.PLAYER_ONE + " Wins");
+			winnerLabel.setText(gameView.getPlayerOne() + " Wins");
 			break;
 		case BLACK:
-			winnerLabel.setText(OthelloSettings.PLAYER_TWO + " Wins");
+			winnerLabel.setText(gameView.getPlayerTwo() + " Wins");
 			break;
 		case NONE:
 			winnerLabel.setText("DRAW");
@@ -252,7 +256,6 @@ public class GameOverView extends Group {
 			setMouseTransparent(true);
 			setVisible(false);
 			setShowing(false);
-			
 			return;
 		}
 

@@ -3,6 +3,7 @@ package main;
 import com.eudycontreras.othello.capsules.AbstractMove;
 import com.eudycontreras.othello.controllers.AgentController;
 import com.eudycontreras.othello.controllers.AgentMove;
+import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.models.GameBoardState;
 import com.eudycontreras.othello.threading.ThreadManager;
 import com.eudycontreras.othello.threading.TimeSpan;
@@ -19,6 +20,17 @@ import com.eudycontreras.othello.threading.TimeSpan;
  * @author Eudy Contreras
  */
 public class ExampleAgentA extends AgentMove{
+	
+	private ExampleAgentA() {
+		super(PlayerTurn.PLAYER_ONE);
+		// TODO Auto-generated constructor stub
+	}
+	
+	private ExampleAgentA(PlayerTurn playerTurn) {
+		super(playerTurn);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Delete the content of this method and Implement your logic here!
 	 */
@@ -41,7 +53,7 @@ public class ExampleAgentA extends AgentMove{
 		
 		ThreadManager.pause(TimeSpan.millis(waitTime)); // Pauses execution for the wait time to cause delay
 		
-		return AgentController.getExampleMove(gameState); // returns an example AI move Note: this is not AB Pruning
+		return AgentController.getExampleMove(gameState, playerTurn); // returns an example AI move Note: this is not AB Pruning
 	}
 
 }

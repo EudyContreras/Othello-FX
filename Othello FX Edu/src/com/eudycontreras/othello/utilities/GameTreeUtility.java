@@ -138,6 +138,7 @@ public class GameTreeUtility {
 		return buildDecissionTree(currentState, currentState, treeBuildDepth, System.currentTimeMillis(), treeBuildTime);
 	}
 	
+	
 	private static GameBoardState buildInitialBranches(GameBoardState root, GameBoardState currentState, GameBoardCell node, int buildDepth, long startTime, int treeBuildTime){
 	
 		moveCounter ++;

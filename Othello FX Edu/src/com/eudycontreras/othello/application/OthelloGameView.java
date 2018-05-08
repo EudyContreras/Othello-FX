@@ -133,12 +133,12 @@ public class OthelloGameView{
 	
 	public void initialize() {
 		gameBlurView = new GameBlurView();
-	    gameScoreView = new GameScoreView(playerOne, playerTwo, 280, 180);
+	    gameScoreView = new GameScoreView(this, 280, 180);
 	    gameBoardView = new GameBoardView(this, layout, boardSize, boardSize);
 	    gameMenuView = new GameMenuView(this,scene);    
 	    gameInfoView = new GameInfoView(this,scene);
 		gameAboutView = new GameAboutView();
-	    gameOverView = new GameOverView();
+	    gameOverView = new GameOverView(this);
 	    
 	    gameOverView.initialize(this, 500, 150);
 	    gameAboutView.initialize(170, 120);
@@ -256,6 +256,23 @@ public class OthelloGameView{
 		
 		filler.setFill(themes[index]);
 		
+	}
+
+
+	public String getPlayerOne() {
+		return playerOne;
+	}
+
+	public void setPlayerOne(String playerOne) {
+		this.playerOne = playerOne;
+	}
+
+	public String getPlayerTwo() {
+		return playerTwo;
+	}
+
+	public void setPlayerTwo(String playerTwo) {
+		this.playerTwo = playerTwo;
 	}
 
 	public double getMenuWidth() {

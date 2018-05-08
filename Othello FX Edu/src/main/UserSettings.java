@@ -1,6 +1,7 @@
 package main;
 
 import com.eudycontreras.othello.controllers.AgentController.DeepeningType;
+import com.eudycontreras.othello.enumerations.GameMode;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -20,6 +21,10 @@ public class UserSettings {
 	 */
 	public static final DeepeningType DEEPENING = DeepeningType.NONE;
 	/**
+	 * Determines the game mode to use
+	 */
+	public static final GameMode GAME_MODE = GameMode.AGENT_VS_AGENT;
+	/**
 	 * Used for defining the maximum search time
 	 */
 	public static final int MAX_SEARCH_TIME = 4000;
@@ -27,13 +32,16 @@ public class UserSettings {
 	/**
 	 * Used for defining the minimum search time
 	 */
-	public static final int MIN_SEARCH_TIME = 1200;
+	public static final int MIN_SEARCH_TIME = 500;
 	
 	/**
 	 * Used for defining the search time
 	 */
 	public static final int SEARCH_TIME = 2500;
-	
+	/**
+	 * The time it take for each Agent to play when Agent vs Agent is active.
+	 */
+	public static final int TURN_INTERVAL = 100;
 	/**
 	 * Used for defining the maximum value
 	 */
@@ -56,13 +64,8 @@ public class UserSettings {
 	 * Specially on systems running other OS than windows. This
 	 * is off by default.
 	 */
-	public static final boolean USE_ANIMATION = false;
-	/**
-	 * This defines if the AI agent should
-	 * be used or not. If false the game will
-	 * be started in two human player mode.
-	 */
-	public static final boolean USE_AI_AGENT = false;
+	public static final boolean USE_ANIMATION = true;
+
 	/**
 	 * This defines the scale at which the
 	 * game is rendered. This options helps 
@@ -87,6 +90,20 @@ public class UserSettings {
 	 */
 	public static final int THEME_INDEX = 0;
 	
-
+	/**
+	 * Weight from high to low. The higher the 
+	 * weight the higher the reward. Take a look at
+	 * the weight matrix inside AgentManager to see how
+	 * the weights are distributed. Feel free to modify
+	 * the weights in order to achieve desired heuristics
+	 */
+	public static final int A = 256;
+	public static final int B = 128;
+	public static final int C = 64;
+	public static final int D = 8;
+	public static final int E = 4;
+	public static final int F = 2;
+	public static final int G = -128;
+	public static final int H = -256;
 
 }

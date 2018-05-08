@@ -1,5 +1,7 @@
 package com.eudycontreras.othello.application;
 
+import com.eudycontreras.othello.enumerations.GameMode;
+
 import main.UserSettings;
 
 /**
@@ -18,12 +20,13 @@ public class OthelloSettings {
 
 	public static final String PLAYER_ONE = getPlayerOneName(UserSettings.PLAYER_ONE);
 	public static final String PLAYER_TWO = getPlayerTwoName(UserSettings.PLAYER_TWO);
+	
 	public static final String STYLESHEET = "application.css";
 	public static final String GAME_NAME = "Othello";
 	
 	public static boolean DEBUG_GAME = false;
 
-	public static final boolean USE_AI_AGENT = UserSettings.USE_AI_AGENT;
+	public static final boolean USE_AI_AGENT =UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT || UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT ;
 
 	public static final int DEFAULT_MENU_WIDTH = 200;
 	public static final int DEFAULT_BOARD_SIZE = 800;
@@ -76,14 +79,22 @@ public class OthelloSettings {
 	}
 
 	private static final String getPlayerOneName(String name){
-		if(USE_AI_AGENT){
-			return "Computer";
+		if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
+			return "Agent One";
+	
+		}else if(UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT){
+			
+			return "Agent";
 		}else{
+		
 			return name != null ? name : "Player One";
 		}
 	}
 	
 	private static final String getPlayerTwoName(String name){
+		if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
+			return "Agent Two";
+		}
 		return name != null ? name : "Player Two";
 	}
 	

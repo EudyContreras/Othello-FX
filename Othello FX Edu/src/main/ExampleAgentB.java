@@ -20,6 +20,17 @@ import com.eudycontreras.othello.threading.TimeSpan;
  * @author Eudy Contreras
  */
 public class ExampleAgentB extends AgentMove{
+	
+	private ExampleAgentB() {
+		super(PlayerTurn.PLAYER_ONE);
+		// TODO Auto-generated constructor stub
+	}
+	
+	private ExampleAgentB(PlayerTurn playerTurn) {
+		super(playerTurn);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Delete the content of this method and Implement your logic here!
 	 */
@@ -42,7 +53,7 @@ public class ExampleAgentB extends AgentMove{
 		
 		ThreadManager.pause(TimeSpan.millis(waitTime)); // Pauses execution for the wait time to cause delay
 		
-		return AgentController.findBestMove(gameState, PlayerTurn.PLAYER_ONE); // returns an example AI move Note: this is not AB Pruning
+		return AgentController.findBestMove(gameState, playerTurn); // returns an example AI move Note: this is not AB Pruning
 	}
 
 }

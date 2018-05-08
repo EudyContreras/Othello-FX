@@ -4,6 +4,7 @@ import com.eudycontreras.othello.controllers.AgentController;
 import com.eudycontreras.othello.controllers.AgentMove;
 import com.eudycontreras.othello.controllers.GameController;
 import com.eudycontreras.othello.enumerations.BoardCellState;
+import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.models.GameBoardCell;
 
 import javafx.application.Application;
@@ -30,14 +31,21 @@ public class Othello {
 	
 	private OthelloGameView othelloGameView;
 	
-	
-	public Othello(Stage primaryStage, AgentMove agent) {
+	public Othello(Stage primaryStage, AgentMove agentOne, AgentMove agentTwo) {
 		this.gameController = new GameController(this);
-		this.agentController = new AgentController(this, agent);
+		this.agentController = new AgentController(this, agentOne, agentTwo);
 		this.othelloGame = new OthelloGame(OthelloSettings.DEFAULT_BOARD_GRID_SIZE);
 		this.othelloGameView = new OthelloGameView(primaryStage,this, OthelloSettings.DEFAULT_BOARD_GRID_SIZE);
-		
+	
 		this.othelloGameView.setViewCallback(gameController.getViewCallback());
+		
+		if(agentOne != null && agentOne.getAgentName() != null){
+			othelloGameView.setPlayerOne(agentOne.getAgentName());
+		}
+		
+		if(agentTwo != null && agentTwo.getAgentName() != null){
+			othelloGameView.setPlayerTwo(agentTwo.getAgentName());
+		}
 		
 		this.gameController.setOthelloGame(othelloGame);
 		
@@ -46,16 +54,26 @@ public class Othello {
 		this.othelloGameView.initialize();
 		
 		this.gameController.initialize();
+		
 
 		this.othelloGameView.openGame(()->{
 			this.gameController.setInitialState(0);
-			this.setAgentMove();
+			this.setAgentMove(PlayerTurn.PLAYER_ONE);
 		});
 	}
 	
+	
+	public Othello(Stage primaryStage, AgentMove agent) {
+		this(primaryStage, agent, null);
+	}
+	
 	public void setAgentMove() {
+		setAgentMove(PlayerTurn.PLAYER_ONE);
+	}
+	
+	public void setAgentMove(PlayerTurn playerTurn) {
 		if(OthelloSettings.USE_AI_AGENT){
-			agentController.makeMove(othelloGame.getGameBoard());
+			agentController.makeMove(playerTurn,othelloGame.getGameBoard());
 		}
 	}
 

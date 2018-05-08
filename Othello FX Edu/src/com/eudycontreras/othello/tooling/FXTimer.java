@@ -16,20 +16,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ObservableDoubleValue;
 import javafx.util.Duration;
 
-/**
- * <H2>Created by</h2> Eudy Contreras
- * <h4> Mozilla Public License 2.0 </h4>
- * Licensed under the Mozilla Public License 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <a href="https://www.mozilla.org/en-US/MPL/2.0/">visit Mozilla Public Lincense Version 2.0</a>
- * <H2>Class description</H2>
- *
- * Provides factory methods for timers that are manipulated from and execute
- * their action on the JavaFX application thread.
- * 
- * @author Eudy Contreras
- */
+
 public class FXTimer<T> implements ITimer {
 
 	public static void runAfter(Duration delay, Runnable script){

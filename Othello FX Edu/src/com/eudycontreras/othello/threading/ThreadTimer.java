@@ -18,14 +18,16 @@ public class ThreadTimer {
 		TimerControl timerControl = new TimerControl();
 		
 		ThreadManager.performTask(() -> {
-            waitTime(delay.getDuration());
-            
+           
             if(!timerControl.isTimerStopped()){
+            	waitTime(delay.getDuration());
+                
             	if(script != null){
             		script.run();
             	}
             }
         });
+		
 		return timerControl;
 	}
 	

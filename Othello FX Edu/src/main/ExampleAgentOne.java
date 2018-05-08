@@ -19,16 +19,20 @@ import com.eudycontreras.othello.threading.TimeSpan;
  * 
  * @author Eudy Contreras
  */
-public class ExampleAgentD extends AgentMove{
+public class ExampleAgentOne extends AgentMove{
 	
-	private ExampleAgentD() {
-		super(PlayerTurn.PLAYER_ONE);
-		// TODO Auto-generated constructor stub
+	
+	public ExampleAgentOne() {
+		this(PlayerTurn.PLAYER_ONE);
 	}
 	
-	private ExampleAgentD(PlayerTurn playerTurn) {
+	public ExampleAgentOne(String name) {
+		super(name, PlayerTurn.PLAYER_ONE);
+	}
+	
+	public ExampleAgentOne(PlayerTurn playerTurn) {
 		super(playerTurn);
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	/**
@@ -49,11 +53,11 @@ public class ExampleAgentD extends AgentMove{
 	 */
 	private AbstractMove getExampleMove(GameBoardState gameState){
 		
-		int waitTime = UserSettings.MIN_SEARCH_TIME;
+		int waitTime = UserSettings.MIN_SEARCH_TIME; // 1.5 seconds
 		
 		ThreadManager.pause(TimeSpan.millis(waitTime)); // Pauses execution for the wait time to cause delay
 		
-		return AgentController.findRandomMove(gameState, playerTurn); // returns an example AI move Note: this is not AB Pruning
+		return AgentController.getExampleMove(gameState, playerTurn); // returns an example AI move Note: this is not AB Pruning
 	}
 
 }

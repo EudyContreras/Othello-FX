@@ -14,6 +14,7 @@ import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.capsules.TraversalWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
+import com.eudycontreras.othello.exceptions.NoSpecifiedAgentException;
 import com.eudycontreras.othello.exceptions.NotImplementedException;
 import com.eudycontreras.othello.models.GameBoard;
 import com.eudycontreras.othello.models.GameBoardCell;
@@ -21,6 +22,14 @@ import com.eudycontreras.othello.models.GameBoardState;
 import com.eudycontreras.othello.threading.ThreadManager;
 import com.eudycontreras.othello.utilities.GameTreeUtility;
 import com.eudycontreras.othello.utilities.TraversalUtility;
+import static main.UserSettings.A;
+import static main.UserSettings.B;
+import static main.UserSettings.C;
+import static main.UserSettings.D;
+import static main.UserSettings.E;
+import static main.UserSettings.F;
+import static main.UserSettings.G;
+import static main.UserSettings.H;
 
 import javafx.application.Platform;
 import main.UserSettings;
@@ -43,14 +52,6 @@ public class AgentController {
 
 	public static final boolean PRINT_BOARD_STATES = false;
 	
-	public static final int A = 256;
-	public static final int B = 128;
-	public static final int C = 64;
-	public static final int D = 8;
-	public static final int E = 4;
-	public static final int F = 2;
-	public static final int G = -128;
-	public static final int H = -256;
 	
 	public static final int NEIGHBOR_OFFSET_X[] = {-1, -1, 0, 1, 1, 1, 0, -1};
 	public static final int NEIGHBOR_OFFSET_Y[] = {0, 1, 1, 1, 0, -1, -1, -1};
@@ -89,18 +90,79 @@ public class AgentController {
 	
 	private Othello othello;
 	
-	private AgentMove agent;
+	private AgentMove agentOne;
+	private AgentMove agentTwo;
 
 	public AgentController(Othello othello, AgentMove move) {
 		this.othello = othello;
-		this.agent = move;
+		this.agentOne = move;
 	}
 
-	public void makeMove(GameBoard gameBoard) {
+	public AgentController(Othello othello, AgentMove agentOne, AgentMove agentTwo) {
+		this.othello = othello;
+		this.agentOne = agentOne;
+		this.agentTwo = agentTwo;
+	}
+	
+	private AgentMove getAgent(PlayerTurn player){
+		switch(player){
+		case PLAYER_ONE:
+			if(agentOne == null){
+				try {
+					throw new NoSpecifiedAgentException("Agent One has not been specified or it is null, Please specified Agent One");
+				} catch (NoSpecifiedAgentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return agentOne;
+		case PLAYER_TWO:
+			if(agentTwo == null){
+				try {
+					throw new NoSpecifiedAgentException("Agent Two has not been specified or it is null, Please specified Agent Two");
+				} catch (NoSpecifiedAgentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return agentTwo;
+		default:
+			if(agentOne == null){
+				try {
+					throw new NoSpecifiedAgentException("Agent One has not been specified or it is null, Please specified Agent One");
+				} catch (NoSpecifiedAgentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return agentOne;
+		
+		}
+	}
 
+	
+	public synchronized void makeMove(GameBoard gameBoard) {
+		makeMove(PlayerTurn.PLAYER_ONE, gameBoard);
+	}
+	
+	public synchronized void makeMove(PlayerTurn agentTurn, GameBoard gameBoard) {
+
+		AgentMove agent = getAgent(agentTurn);
+		
+		
 		GameBoardState root = gameBoard.getGameState();
 
-		root.setPlayerTurn(BoardCellState.WHITE);
+		switch(agentTurn){
+		case PLAYER_ONE:
+			root.setPlayerTurn(BoardCellState.WHITE);
+			break;
+		case PLAYER_TWO:
+			root.setPlayerTurn(BoardCellState.BLACK);
+			break;
+		default:
+			break;
+			
+		}
 		
 		ThreadManager.execute(()->{
 			
@@ -122,7 +184,7 @@ public class AgentController {
 
 			Platform.runLater(() -> {
 				if(move != null){
-					othello.getGameController().setAgentMove(move);
+					othello.getGameController().setAgentMove(agentTurn,move);
 				}
 			});
 		});
@@ -134,17 +196,21 @@ public class AgentController {
 	 * @return
 	 */
 	public static MoveWrapper getExampleMove(GameBoardState gameState) {
+		return getExampleMove(gameState, PlayerTurn.PLAYER_ONE);
+	}
+	
+	public static MoveWrapper getExampleMove(GameBoardState gameState, PlayerTurn playerTurn) {
 		int value = new Random().nextInt(3);
 		
 		if(value == 0){
-			return AgentController.findBestMove(gameState, PlayerTurn.PLAYER_ONE);
+			return AgentController.findBestMove(gameState, playerTurn);
 		}else if(value == 1){
-			return AgentController.findSafeMove(gameState, PlayerTurn.PLAYER_ONE);
+			return AgentController.findSafeMove(gameState, playerTurn);
 		}else if(value == 3){
-			return AgentController.findRandomMove(gameState, PlayerTurn.PLAYER_ONE);
+			return AgentController.findRandomMove(gameState, playerTurn);
 		}
 
-		return AgentController.findBestMove(gameState, PlayerTurn.PLAYER_ONE);
+		return AgentController.findBestMove(gameState, playerTurn);
 	}
 	
 	/**
@@ -242,7 +308,7 @@ public class AgentController {
 			}
 		
 			//The best move is then added to the list of adversary moves as a result
-			adversaryMoves.add(new ResultWrapper(agentMoveState, bestMove, agentMove));
+			adversaryMoves.add(new ResultWrapper(turn, agentMoveState, bestMove, agentMove));
 		
 		}
 		
@@ -280,6 +346,12 @@ public class AgentController {
 		return list.isEmpty() || list == null;
 	}
 	
+	/**
+	 * Returns the best move for said player given said state.
+	 * @param state : The current state of the board
+	 * @param player : The current player
+	 * @return
+	 */
 	public static ObjectiveWrapper getBestMove(GameBoardState state, PlayerTurn player){
 		
 		List<ObjectiveWrapper> moves = getAvailableMoves(state, player);
@@ -295,6 +367,11 @@ public class AgentController {
 		return move;
 	}
 	
+	/**
+	 * Returns the best move given a list of moves
+	 * @param moves: List of moves
+	 * @return
+	 */
 	private static ObjectiveWrapper getBestMove(List<ObjectiveWrapper> moves) {
 
 		if(moves.isEmpty()){
@@ -313,6 +390,12 @@ public class AgentController {
 		return longest;
 	}
 	
+	/**
+	 * Returns the available moves for said player given the state of the board
+	 * @param state : The state of the board
+	 * @param player : The current player
+	 * @return
+	 */
 	public static List<ObjectiveWrapper> getAvailableMoves(GameBoardState state, PlayerTurn player){
 
 		List<GameBoardCell> cells = state.getGameBoard().getGameBoardCells(player);
@@ -338,6 +421,11 @@ public class AgentController {
 		return moves;
 	}
 
+	/**
+	 * Returns a strategy to use given how full the board is.
+	 * @param state: The state of the board
+	 * @return
+	 */
 	public static StrategyType getStrategyType(GameBoardState state){
 		int earlyCount = (int)(state.getTotalCount() * 0.3333);
 		int midCount = (int)(state.getTotalCount() * 0.5);
@@ -351,37 +439,66 @@ public class AgentController {
 		}
 	}
 	
+	/**
+	 * Returns new state based on given state and the given move.
+	 * @param state: The state of the board
+	 * @param move: The move.
+	 * @return
+	 */
 	public static GameBoardState getNewState(GameBoardState state, ObjectiveWrapper move){
 		
 		return GameTreeUtility.createChildState(null, state, move);
 	}
 	
-	public static double getGameEvaluation(GameBoardState state){	
-		return getGameEvaluation(state, getStrategyType(state));
+	/**
+	 * Returns an evaluation given a state
+	 * @param state: The state of the board
+	 * @return
+	 */
+	public static double getGameEvaluation(GameBoardState state,  PlayerTurn playerTurn){	
+		return getGameEvaluation(state, getStrategyType(state),playerTurn);
 	}
 	
-	public static double getGameEvaluation(GameBoardState state, StrategyType evaluation){	
-		return getGameEvaluation(state, evaluation, HeuristicType.DYNAMIC);
+	/**
+	 * Returns an evaluation given the state of a board and a strategy
+	 * @param state: The state of the board
+	 * @param stradegy : Strategy
+	 * @return
+	 */
+	public static double getGameEvaluation(GameBoardState state, StrategyType stradegy,  PlayerTurn playerTurn){	
+		return getGameEvaluation(state, stradegy, HeuristicType.DYNAMIC, playerTurn);
 	}
 	
-	public static double getGameEvaluation(GameBoardState state, HeuristicType heuristicType){	
-		return getGameEvaluation(state,  getStrategyType(state), heuristicType);
+	/**
+	 * Returns an evaluation given the state of the board and a type of heuristic
+	 * @param state: The state of the board
+	 * @param heuristicType: A type of heuristic
+	 * @return
+	 */
+	public static double getGameEvaluation(GameBoardState state, HeuristicType heuristicType,  PlayerTurn playerTurn){	
+		return getGameEvaluation(state,  getStrategyType(state), heuristicType, playerTurn);
 	}
 	
-	public static double getGameEvaluation(GameBoardState state, StrategyType evaluation, HeuristicType heuristicType){	
+
+	public static double getGameEvaluation(GameBoardState state, StrategyType evaluation, HeuristicType heuristicType,  PlayerTurn playerTurn){	
 		switch(evaluation){
 		case EARLY_GAME:
-			return heuristicEvaluation(state, heuristicType, PlayerTurn.PLAYER_ONE);
+			return heuristicEvaluation(state, heuristicType, playerTurn);
 		case MID_GAME:
-			return heuristicEvaluation(state, heuristicType, PlayerTurn.PLAYER_ONE);
+			return heuristicEvaluation(state, heuristicType, playerTurn);
 		case LATE_GAME:
-			return heuristicEvaluation(state, heuristicType, PlayerTurn.PLAYER_ONE);
+			return heuristicEvaluation(state, heuristicType, playerTurn);
 		default:
-			return heuristicEvaluation(state, heuristicType, PlayerTurn.PLAYER_ONE);
+			return heuristicEvaluation(state, heuristicType, playerTurn);
 		
 		}	
 	}
 	
+	/**
+	 * Return the terminal evaluation given a state
+	 * @param state:  The state of the board
+	 * @return
+	 */
 	public static int getTerminalEvaluation(GameBoardState state){
 		GameBoardCell[][] grid = state.getGameBoard().getCells();
 		
@@ -1089,7 +1206,7 @@ public class AgentController {
 
 		public static final Comparator<ResultWrapper> AGENT_REWARD_COMPARATOR = ResultWrapper.getAgentRewardComparator();
 		
-		public static final Comparator<ResultWrapper> STATIC_SCORE_COMPARATOR = ResultWrapper.getStaticScoreComparator();
+		public static Comparator<ResultWrapper> STATIC_SCORE_COMPARATOR;
 		
 		private GameBoardState state;
 		
@@ -1097,11 +1214,23 @@ public class AgentController {
 		
 		private ObjectiveWrapper agentMove;
 
-		public ResultWrapper(GameBoardState state, ObjectiveWrapper adversaryMove, ObjectiveWrapper aiMove) {
+		public ResultWrapper(PlayerTurn playerTurn, GameBoardState state, ObjectiveWrapper adversaryMove, ObjectiveWrapper aiMove) {
 			super();
 			this.state = state;
 			this.humanMove = adversaryMove;
 			this.agentMove = aiMove;
+			switch(playerTurn){
+			case PLAYER_ONE:
+				STATIC_SCORE_COMPARATOR = ResultWrapper.getStaticScoreComparator(BoardCellState.WHITE);
+				break;
+			case PLAYER_TWO:
+				STATIC_SCORE_COMPARATOR = ResultWrapper.getStaticScoreComparator(BoardCellState.BLACK);
+				break;
+			default:
+				break;
+				
+			}
+		
 		}
 
 		public ObjectiveWrapper getHumanMove() {
@@ -1145,12 +1274,12 @@ public class AgentController {
 			};
 		}
 
-		private static Comparator<ResultWrapper> getStaticScoreComparator() {
+		private static Comparator<ResultWrapper> getStaticScoreComparator(BoardCellState boardCellState) {
 			return new Comparator<ResultWrapper>(){
 
 				@Override
 				public int compare(ResultWrapper arg0, ResultWrapper arg1) {
-					return Integer.compare((int)arg0.getState().getStaticScore(BoardCellState.WHITE), (int)arg1.getState().getStaticScore(BoardCellState.WHITE));
+					return Integer.compare((int)arg0.getState().getStaticScore(boardCellState), (int)arg1.getState().getStaticScore(boardCellState));
 				}			
 			};
 		}

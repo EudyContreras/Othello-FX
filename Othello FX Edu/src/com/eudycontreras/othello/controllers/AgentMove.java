@@ -1,5 +1,7 @@
 package com.eudycontreras.othello.controllers;
 
+import com.eudycontreras.othello.enumerations.PlayerTurn;
+
 /**
  * <H2>Created by</h2> Eudy Contreras
  * <h4> Mozilla Public License 2.0 </h4>
@@ -22,7 +24,23 @@ public abstract class AgentMove implements IAgentMove {
 	protected int nodesExamined = 0;
 	protected int prunedCounter = 0;
 
+	protected PlayerTurn playerTurn;
+	
+	protected String agentName;
 
+	public AgentMove(PlayerTurn playerTurn){
+		this.playerTurn = playerTurn;
+	}
+	
+	public AgentMove(String agentName){
+		this.agentName = agentName;
+	}
+	
+	public AgentMove(String agentName, PlayerTurn playerTurn){
+		this.agentName = agentName;
+		this.playerTurn = playerTurn;
+	}
+	
 	public int getSearchDepth() {
 		return searchDepth;
 	}
@@ -62,4 +80,21 @@ public abstract class AgentMove implements IAgentMove {
 		this.prunedCounter = 0;
 	}
 
+
+	public PlayerTurn getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(PlayerTurn playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+
+	public String getAgentName() {
+		return agentName;
+	}
+
+	public void setAgentName(String agentName) {
+		this.agentName = agentName;
+	}
+	
 }
