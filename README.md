@@ -147,7 +147,7 @@ A step by step series of examples that tell you have to get a development env ru
 ### Contributing
 
 
-Please read [Contributing](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
+Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/CONTRIBUTING.md) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
 
 
 
@@ -177,7 +177,7 @@ Econtreras12@live.com
 ### License
 
 
-This project is licensed under the MIT License - see the [Licence](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [Licence](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/LICENSE) file for details
 
 ------------
     The MIT License (MIT)
