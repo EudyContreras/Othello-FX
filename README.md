@@ -7,12 +7,13 @@
 
 
 This is an an Othello/Riversi game made in Java using JavaFX GUI Framework. 
-The game allows you to play in two modes. 
+The game allows you to implement and add your own AI agents which you will then be able to test and play againts. OthelloFX comes with 3 different Agent implementations excluding the usual ones such as MiniMax which you will have to implement on your own. The game can be ran in multiple modes:
 
 * Human Player vs Human Player
 * Humna Player vs AI Agent
-* AI Agent vs AI Agent coming soon.
+* AI Agent vs AI Agent.
 
+The game also .
 
 
 ![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX.png)
@@ -52,7 +53,7 @@ public class ExampleMove extends AbstractMove{
 
 #### AI Agent
 
-Your agent must extend from the [Agent Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/AgentMove.java) which is a simple POJO containing important information used for determining how good your move algorithm performs, along with other information regarding the move search. 
+Your agent must extend from the [Agent Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/AgentMove.java) which is a simple POJO containing important information used for determining how good your move algorithm performs, along with other information regarding the move search. The constructor of an *AgentMove* allows the turn/type to be specified as well as a name if you wish to give your agent a name.
 
 
 > Example Agent class which extends from AgentMove
@@ -72,7 +73,7 @@ public class ExampleAgent extends AgentMove{
 
 #### Agent Manager
 
-The [Agent Manager](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/main/AgentManager.java) is the class you will use to run your agents. In order to run your agent simply create an instance of your agent and pass it through the second parametter of the instance of Othello just how it is shown below. 
+The [Agent Manager](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/main/AgentManager.java) is the class you will use to run your agents. In order to run your agent simply create an instance of your agent and pass it through the second parametter of the instance of Othello just how it is shown below. The game manager will allow you to pass one or two agents. The first agent must always be PlayerOne while the second must always be PlayerTwo. The player type is determine by the turn. Player one always starts. 
 
 > Agent Manager class main launcher application
 ```java
@@ -91,6 +92,12 @@ public class AgentManager extends Application{
 ```
 
 
+#### Notes
+
+
+Take a look at the [Agent Manager](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/main/AgentManager.java) to see a variety of helper methods as well as various implementations of different angents. There are other utility classes which might be of help 
+
+
 #### Customization
 
 
@@ -101,13 +108,13 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 | Property                 	| Values                               | Description                                  |
 | ----------------------------- | ------------------------------------ | -------------------------------------------- |
 | DEEPENING                	| NONE, ITERATIVE, DYNAMIC             | Sets the deepening style to use.             |
+| GAME_MODE             	| P vs P, A vs A, P vs A               | Sets the game mode player vs player, etc     |
 | MAX_SEARCH_TIME          	| 5000      milliseconds               | Sets the maximun allowed search time         |
 | MIN_SEARCH_TIME          	| 0         milliseconds               | Sets the minimun allowed search time         |
 | SEARCH_TIME              	| 0 - 5000  milliseconds               | Sets the search time to aim for              |
 | PLAYER_ONE               	| Any String                           | Sets the name of the player one              |
 | PLAYER_TWO               	| Any String                           | Sets the name of the player two              |
 | USE_ANIMATION            	| true or false                        | Sets whether animations should be use or not |
-| USE_AI_AGENT             	| true or false                        | Sets whether the AI agent is in use or not   |
 | GAME_WINDOW_SCALE        	| 0 - 2                                | Sets the scale of of the window. Default = 1 |
 | BOARD_GRID_SIZE          	| 4, 6, 8                              | Sets the size of the board to be used        |
 | THEME_INDEX              	| 0 - 13                               | Sets the theme to be used at startup         |
