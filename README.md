@@ -1,4 +1,7 @@
 
+# OthelloFX <h1> 
+
+
 ![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX.png)
 Othello game framework which can be use for adding Othello AI Agents. 
 
