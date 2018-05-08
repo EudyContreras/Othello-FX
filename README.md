@@ -1,5 +1,6 @@
 
-# OthelloFX Framework
+# Othello-FX-Framework ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
+
 
 > Othello game framework which can be use for adding Othello AI Agents..
 
@@ -94,19 +95,19 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 
 
 
-| Property                 | Values                               | Description                                  |
-| ------------------------ | ------------------------------------ | -------------------------------------------- |
-| DEEPENING                | NONE, ITERATIVE, DYNAMIC             | Sets the deepening style to use.             |
-| MAX_SEARCH_TIME          | 5000      milliseconds               | Sets the maximun allowed search time         |
-| MIN_SEARCH_TIME          | 0         milliseconds               | Sets the minimun allowed search time         |
-| SEARCH_TIME              | 0 - 5000  milliseconds               | Sets the search time to aim for              |
-| PLAYER_ONE               | Any String                           | Sets the name of the player one              |
-| PLAYER_TWO               | Any String                           | Sets the name of the player two              |
-| USE_ANIMATION            | true or false                        | Sets whether animations should be use or not |
-| USE_AI_AGENT             | true or false                        | Sets whether the AI agent is in use or not   |
-| GAME_WINDOW_SCALE        | 0 - 2                                | Sets the scale of of the window. Default = 1 |
-| BOARD_GRID_SIZE          | 4, 6, 8                              | Sets the size of the board to be used        |
-| THEME_INDEX              | 0 - 13                               | Sets the theme to be used at startup         |
+| Property                 	| Values                               | Description                                  |
+| ----------------------------- | ------------------------------------ | -------------------------------------------- |
+| DEEPENING                	| NONE, ITERATIVE, DYNAMIC             | Sets the deepening style to use.             |
+| MAX_SEARCH_TIME          	| 5000      milliseconds               | Sets the maximun allowed search time         |
+| MIN_SEARCH_TIME          	| 0         milliseconds               | Sets the minimun allowed search time         |
+| SEARCH_TIME              	| 0 - 5000  milliseconds               | Sets the search time to aim for              |
+| PLAYER_ONE               	| Any String                           | Sets the name of the player one              |
+| PLAYER_TWO               	| Any String                           | Sets the name of the player two              |
+| USE_ANIMATION            	| true or false                        | Sets whether animations should be use or not |
+| USE_AI_AGENT             	| true or false                        | Sets whether the AI agent is in use or not   |
+| GAME_WINDOW_SCALE        	| 0 - 2                                | Sets the scale of of the window. Default = 1 |
+| BOARD_GRID_SIZE          	| 4, 6, 8                              | Sets the size of the board to be used        |
+| THEME_INDEX              	| 0 - 13                               | Sets the theme to be used at startup         |
 
 
 
@@ -131,7 +132,8 @@ A step by step series of examples that tell you have to get a development env ru
 
 
 
-## Built With
+### Built With
+
 
 * [JavaFX](https://en.wikipedia.org/wiki/JavaFX) - The GUI framework used
 * [Java](https://maven.apache.org/) - The programming language used
@@ -139,33 +141,38 @@ A step by step series of examples that tell you have to get a development env ru
 
 
 
-## Contributing
+### Contributing
+
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
 
 
 
-## Authors
+### Authors
+
 
 * **Eudy Contreras** 
 
 
 
-## Acknowledgments
+### Acknowledgments
+
 
 * Jose Font for inspiration and education.
 * Other teachers at Malmö Univertiy.
 
 
 
-## Contact
+### Contact
+
 
 Any questions reach me at.
 Econtreras12@live.com
 
 
 
-## License
+### License
+
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
