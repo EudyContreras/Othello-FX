@@ -5,11 +5,14 @@
 > Othello game framework which can be use for adding Othello AI Agents..
 
 
-This is an an Othello/Riversi game made in Java using JavaFX GUI Framework. The game allows you to play in two modes. 
+
+This is an an Othello/Riversi game made in Java using JavaFX GUI Framework. 
+The game allows you to play in two modes. 
 
 * Human Player vs Human Player
 * Humna Player vs AI Agent
 * AI Agent vs AI Agent coming soon.
+
 
 
 ![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX.png)
@@ -115,7 +118,7 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 
 Things you need in order to be able to run OthelloFX
 
-*[Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or highter
+* [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or highter
 
 
 
@@ -144,7 +147,7 @@ A step by step series of examples that tell you have to get a development env ru
 ### Contributing
 
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
+Please read [Contributing](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
 
 
 
@@ -174,7 +177,7 @@ Econtreras12@live.com
 ### License
 
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [Licence](LICENSE.md) file for details
 
 ------------
     The MIT License (MIT)
