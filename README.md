@@ -27,21 +27,21 @@ The game allows you to implement and add your own AI agents which you will then 
 Refer to the main folder in order to find the documented files you need. There you will see the [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/main/UserSettings.java) file, the [Agent Manager](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/main/AgentManager.java) in which you will run your agent/s, as well as various example agents and implementations. Take a look at the [Agent Controller](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/AgentController.java) for useful static methods, etc
 
 
-#### Move
+#### Agent Move
 
-Implement a move if necessary or use the existing implementation. A move must extend from [Abstract Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/AbstractMove.java) and implement the compareTo and the IsValid methods. In those methods you define what makes a move better than the other as well as how you define a move as valid. Take a look at [Move Wrapper](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/MoveWrapper.java) for an example of how a move is implemented. Only the isValid and the compareTo method are needed by the framework but as you can see you can also create your own helper methods.
+Implement a move if necessary or use the existing implementation. A move must extend from [Agent Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/AgentMove.java) and implement the compareTo and the IsValid methods. In those methods you define what makes a move better than the other as well as how you define a move as valid. Take a look at [Move Wrapper](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/MoveWrapper.java) for an example of how a move is implemented. Only the isValid and the compareTo method are needed by the framework but as you can see you can also create your own helper methods.
 
 
 > Example Move class which extends from AbstractMove
 ```java
 
-public class ExampleMove extends AbstractMove{
+public class ExampleMove extends AgentMove{
 
 	public ExampleMove() {	
 	}
 
 	@Override
-	public int compareTo(MoveWrapper move) {
+	public int compareTo(AgentMove move) {
 		return 0;
 	}
 
@@ -62,10 +62,10 @@ Your agent must extend from the [Agent Move](https://github.com/EudyContreras/Ot
 > Example Agent class which extends from AgentMove
 ```java
 
-public class ExampleAgent extends AgentMove{
+public class ExampleAgent extends Agent{
 
 	@Override
-	public AbstractMove getMove(GameBoardState gameState) {
+	public AgentMove getMove(GameBoardState gameState) {
 		return yourMove();
 	}
 }
@@ -85,7 +85,7 @@ public class AgentManager extends Application{
 
 	@Override
 	public void start(Stage primaryStage) {
-		new Othello(primaryStage, new ExampleAgent());
+		new Othello(primaryStage, new ExampleAgent("Some Name", PlayerTurn.PLAYER_ONE));
 	}
 	public static void main(String[] args) {
 		launch(args);
