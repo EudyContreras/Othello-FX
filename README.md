@@ -1,5 +1,6 @@
 
-# Othello-FX-Framework ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
+# Othello FX ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
+
 
 
 > Othello game framework which can be use for adding Othello AI Agents..
