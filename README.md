@@ -4,7 +4,7 @@
 
 
 
-> Othello game framework which can be use for adding Othello AI Agents..
+> Othello game framework which can be used as a platform for testing Othello AI Agents as well as just a normal Othello game.
 
 
 
