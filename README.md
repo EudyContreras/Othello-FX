@@ -1,5 +1,5 @@
 
-# Othello FX ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
+# Othello FX Framework
 
 
 
@@ -144,7 +144,7 @@ Things you need in order to be able to run *OthelloFX*
 
 ### Built With
 
-
+![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
 * [JavaFX](https://en.wikipedia.org/wiki/JavaFX) - The GUI framework used
 * [Java](https://maven.apache.org/) - The programming language used
 
