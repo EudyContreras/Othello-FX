@@ -1,5 +1,6 @@
+# Othello FX Framework 
+![OthelloFX Logo](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/logo.png)
 
-# Othello FX Framework
 
 
 
@@ -18,7 +19,7 @@ The game allows you to implement and add your own AI agents which you will then 
 * AI Agent vs AI Agent.
 
 
-![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX.png)
+![Image of OthelloFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/OthelloFX2.png)
 
 
 ## Getting Started
@@ -113,6 +114,8 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 | GAME_MODE                   | Ply vs Ply, Agent vs Agent, Ply vs Agent | Sets the game mode to use 	   		   | 
 | MAX_SEARCH_TIME             | 5000      milliseconds by rules          | Sets the maximun allowed search time            |
 | MIN_SEARCH_TIME             | 0         milliseconds               	 | Sets the minimun allowed search time            |
+| TURN_INTERVAL               | 0         milliseconds               	 | Sets the time interval between moves            |
+| START_DELAY                 | 0         milliseconds             	 | Sets the delay before the first move is made    |
 | SEARCH_TIME                 | 0 - 5000  milliseconds                   | Sets the search time to aim for                 |
 | PLAYER_ONE                  | Any String                               | Sets the name of the player one                 |
 | PLAYER_TWO                  | Any String                               | Sets the name of the player two                 |
@@ -178,6 +181,12 @@ Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework
 
 If any questions reach me at.
 Econtreras12@live.com
+
+
+
+### Disclaimer
+
+All background images including the logo were not made by me and I do not claim ownership of these images. I would like to thanks the awesome artist and creators of the images for making them public. If there is any problem with the use of those images please contact me so we can solve it. Once again props to the artists.
 
 
 
