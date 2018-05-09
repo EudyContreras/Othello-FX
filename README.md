@@ -180,7 +180,7 @@ Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework
 #### Acknowledgments
 
 
-* **Jose** Font for inspiration and education.
+* **Jose Font** for inspiration and education.
 * Other teachers at Malmö Univertiy.
 
 
