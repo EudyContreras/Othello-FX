@@ -8,9 +8,9 @@ import com.eudycontreras.othello.application.OthelloGame;
 import com.eudycontreras.othello.application.OthelloSettings;
 import com.eudycontreras.othello.callbacks.EventCallbackController;
 import com.eudycontreras.othello.callbacks.EventCallbackView;
-import com.eudycontreras.othello.capsules.AbstractMove;
+import com.eudycontreras.othello.capsules.AgentMove;
 import com.eudycontreras.othello.capsules.AvailableWrapper;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.capsules.TraversalWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
@@ -121,7 +121,7 @@ public class GameController {
 			
 			callbackController.hidePossibleMove();
 			
-			for(IndexWrapper move: blackPossibleCells.getIndexes()){
+			for(Index move: blackPossibleCells.getIndexes()){
 				callbackController.showPossibleMove(PlayerType.PLAYER_TWO, move);	
 			}
 			
@@ -139,7 +139,7 @@ public class GameController {
 				
 			callbackController.hidePossibleMove();
 			
-			for(IndexWrapper move: whitePossibleCells.getIndexes()){
+			for(Index move: whitePossibleCells.getIndexes()){
 				callbackController.showPossibleMove(PlayerType.PLAYER_ONE, move);	
 			}
 			
@@ -175,7 +175,7 @@ public class GameController {
 			
 			for(ObjectiveWrapper availableCell: availableCells){
 				
-				IndexWrapper index = availableCell.getObjectiveCell().getIndex();
+				Index index = availableCell.getObjectiveCell().getIndex();
 				
 				othelloGame.getGameBoard().getGameBoardCell(index).setObjective(getStateBaseObjective(state), buildTrail(availableCell));
 	
@@ -216,7 +216,7 @@ public class GameController {
 		return false;
 	}
 	
-	public void storeAvailableCells(PlayerType player, List<IndexWrapper> indexes, boolean log) {
+	public void storeAvailableCells(PlayerType player, List<Index> indexes, boolean log) {
 		switch(player){
 		case PLAYER_ONE:
 			whitePossibleCells = new AvailableWrapper(player, indexes);
@@ -263,9 +263,9 @@ public class GameController {
 		return BoardCellState.NONE;
 	}
 	
-	private List<IndexWrapper> buildTrail(ObjectiveWrapper cell){
+	private List<Index> buildTrail(ObjectiveWrapper cell){
 		
-		List<IndexWrapper> indexes = new ArrayList<>();
+		List<Index> indexes = new ArrayList<>();
 		List<TraversalWrapper> paths = cell.getPath();
 		
 		for(int i = 0; i < paths.size(); i++){
@@ -318,7 +318,7 @@ public class GameController {
 						currentTurn = PlayerTurn.PLAYER_TWO;
 						
 						Platform.runLater(()->{
-							for(IndexWrapper move: blackPossibleCells.getIndexes()){
+							for(Index move: blackPossibleCells.getIndexes()){
 								callbackController.showPossibleMove(PlayerType.PLAYER_TWO, move);	
 							}
 						});
@@ -343,7 +343,7 @@ public class GameController {
 						currentTurn = PlayerTurn.PLAYER_ONE;
 						
 						Platform.runLater(()->{
-							for(IndexWrapper move: whitePossibleCells.getIndexes()){
+							for(Index move: whitePossibleCells.getIndexes()){
 								callbackController.showPossibleMove(PlayerType.PLAYER_ONE, move);	
 							}
 							
@@ -443,7 +443,7 @@ public class GameController {
 			switch(currentTurn){
 			case PLAYER_ONE:
 				if(!OthelloSettings.USE_AI_AGENT && whitePossibleCells != null){
-					for(IndexWrapper index: whitePossibleCells.getIndexes()){
+					for(Index index: whitePossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.showPossibleCell(PlayerType.PLAYER_ONE, index);
 						}else{
@@ -456,7 +456,7 @@ public class GameController {
 			case PLAYER_TWO:
 				if(UserSettings.GAME_MODE != GameMode.AGENT_VS_AGENT){
 					if(blackPossibleCells != null){
-						for(IndexWrapper index: blackPossibleCells.getIndexes()){
+						for(Index index: blackPossibleCells.getIndexes()){
 							if(row == index.getRow() && col == index.getCol()){
 								callbackController.showPossibleCell(PlayerType.PLAYER_TWO, index);
 							}else{
@@ -478,7 +478,7 @@ public class GameController {
 			switch(currentTurn){
 			case PLAYER_ONE:
 				if(!OthelloSettings.USE_AI_AGENT && whitePossibleCells != null){
-					for(IndexWrapper index: whitePossibleCells.getIndexes()){
+					for(Index index: whitePossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							callbackController.hidePossibleCell(PlayerType.PLAYER_ONE, index);
 						}
@@ -488,7 +488,7 @@ public class GameController {
 			case PLAYER_TWO:
 				if(UserSettings.GAME_MODE != GameMode.AGENT_VS_AGENT){
 					if(blackPossibleCells != null){
-						for(IndexWrapper index: blackPossibleCells.getIndexes()){
+						for(Index index: blackPossibleCells.getIndexes()){
 							if(row == index.getRow() && col == index.getCol()){
 								callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, index);
 							}
@@ -506,12 +506,12 @@ public class GameController {
 		@SuppressWarnings("unused")
 		@Override
 		public void setMousePressedEvent(MouseEvent e, int row, int col) {
-			callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, new IndexWrapper(row,col));
+			callbackController.hidePossibleCell(PlayerType.PLAYER_TWO, new Index(row,col));
 			
 			switch(currentTurn){
 			case PLAYER_ONE:
 				if(!OthelloSettings.USE_AI_AGENT && whitePossibleCells != null){
-					for(IndexWrapper index: whitePossibleCells.getIndexes()){
+					for(Index index: whitePossibleCells.getIndexes()){
 						if(row == index.getRow() && col == index.getCol()){
 							makeMove(getPlayerType(currentTurn),row,col);
 							
@@ -526,7 +526,7 @@ public class GameController {
 			case PLAYER_TWO:
 				if(UserSettings.GAME_MODE != GameMode.AGENT_VS_AGENT){
 					if(blackPossibleCells != null){
-						for(IndexWrapper index: blackPossibleCells.getIndexes()){
+						for(Index index: blackPossibleCells.getIndexes()){
 							if(row == index.getRow() && col == index.getCol()){
 								makeMove(getPlayerType(currentTurn),row,col);
 								
@@ -611,11 +611,11 @@ public class GameController {
 		}
 	}
 
-	public void setAgentMove(AbstractMove move) {
+	public void setAgentMove(AgentMove move) {
 		setAgentMove(PlayerTurn.PLAYER_ONE, move);
 	}
 	
-	public void setAgentMove(PlayerTurn playerTurn, AbstractMove move) {
+	public void setAgentMove(PlayerTurn playerTurn, AgentMove move) {
 		
 		if(timerControl != null){
 			timerControl.stopTimer(true);

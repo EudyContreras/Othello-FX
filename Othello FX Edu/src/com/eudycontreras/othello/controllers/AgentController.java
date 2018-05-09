@@ -8,7 +8,7 @@ import java.util.Random;
 
 import com.eudycontreras.othello.application.Othello;
 import com.eudycontreras.othello.application.OthelloSettings;
-import com.eudycontreras.othello.capsules.AbstractMove;
+import com.eudycontreras.othello.capsules.AgentMove;
 import com.eudycontreras.othello.capsules.MoveWrapper;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.capsules.TraversalWrapper;
@@ -90,21 +90,21 @@ public class AgentController {
 	
 	private Othello othello;
 	
-	private AgentMove agentOne;
-	private AgentMove agentTwo;
+	private Agent agentOne;
+	private Agent agentTwo;
 
-	public AgentController(Othello othello, AgentMove move) {
+	public AgentController(Othello othello, Agent move) {
 		this.othello = othello;
 		this.agentOne = move;
 	}
 
-	public AgentController(Othello othello, AgentMove agentOne, AgentMove agentTwo) {
+	public AgentController(Othello othello, Agent agentOne, Agent agentTwo) {
 		this.othello = othello;
 		this.agentOne = agentOne;
 		this.agentTwo = agentTwo;
 	}
 	
-	private AgentMove getAgent(PlayerTurn player){
+	private Agent getAgent(PlayerTurn player){
 		switch(player){
 		case PLAYER_ONE:
 			if(agentOne == null){
@@ -151,7 +151,7 @@ public class AgentController {
 			return;
 		}
 		
-		AgentMove agent = getAgent(agentTurn);
+		Agent agent = getAgent(agentTurn);
 		
 		
 		GameBoardState root = gameBoard.getGameState();
@@ -170,7 +170,7 @@ public class AgentController {
 		
 		ThreadManager.execute(()->{
 			
-			AbstractMove move = agent.getMove(root);
+			AgentMove move = agent.getMove(root);
 			
 			othello.getGameController().passInformation(
 					agent.getSearchDepth(),

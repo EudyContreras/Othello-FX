@@ -17,20 +17,20 @@ import com.eudycontreras.othello.enumerations.TraversalCardinal;
  */
 public class TraversalWrapper {
 
-	private IndexWrapper index;
-	private IndexWrapper parentIndex;
+	private Index index;
+	private Index parentIndex;
 	private TraversalCardinal direction;
 	private PathFlag flag;
 
-	public TraversalWrapper(IndexWrapper index, IndexWrapper parentIndex) {
+	public TraversalWrapper(Index index, Index parentIndex) {
 		this(index, parentIndex, TraversalCardinal.NONE, PathFlag.UNVISITED);
 	}
 
-	public TraversalWrapper(IndexWrapper index, IndexWrapper parentIndex, TraversalCardinal direction) {
+	public TraversalWrapper(Index index, Index parentIndex, TraversalCardinal direction) {
 		this(index,  parentIndex, direction, PathFlag.UNVISITED);
 	}
 
-	public TraversalWrapper(IndexWrapper index, IndexWrapper parentIndex, TraversalCardinal direction, PathFlag flag) {
+	public TraversalWrapper(Index index, Index parentIndex, TraversalCardinal direction, PathFlag flag) {
 		super();
 		this.index = index;
 		this.parentIndex = parentIndex;
@@ -42,7 +42,7 @@ public class TraversalWrapper {
 	 * gets the index of the starting point
 	 * @return: the parent index
 	 */
-	public IndexWrapper getParentIndex() {
+	public Index getParentIndex() {
 		return parentIndex;
 	}
 
@@ -50,7 +50,7 @@ public class TraversalWrapper {
 	 * sets the index of the starting point
 	 * @param parentIndex : the starting point
 	 */
-	public void setParentIndex(IndexWrapper parentIndex) {
+	public void setParentIndex(Index parentIndex) {
 		this.parentIndex = parentIndex;
 	}
 
@@ -58,7 +58,7 @@ public class TraversalWrapper {
 	 * Get the index of the destination
 	 * @return : the destination index
 	 */
-	public IndexWrapper getIndex() {
+	public Index getIndex() {
 		return index;
 	}
 
@@ -66,7 +66,7 @@ public class TraversalWrapper {
 	 * Sets the index of the destination
 	 * @param index : the destination index
 	 */
-	public void setIndex(IndexWrapper index) {
+	public void setIndex(Index index) {
 		this.index = index;
 	}
 

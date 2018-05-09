@@ -14,10 +14,10 @@ package com.eudycontreras.othello.capsules;
  * @author Eudy Contreras
  *
  */
-public abstract class AbstractMove implements Comparable<MoveWrapper>{
+public abstract class AgentMove implements Comparable<AgentMove>{
 
 	
-	protected IndexWrapper moveIndex;
+	protected Index moveIndex;
 
 	public abstract boolean isValid();
 	
@@ -26,7 +26,7 @@ public abstract class AbstractMove implements Comparable<MoveWrapper>{
 	 * The index which this move will occupy
 	 * @return the move index
 	 */
-	public IndexWrapper getMoveIndex() {
+	public Index getMoveIndex() {
 		return moveIndex;
 	}
 
@@ -34,7 +34,7 @@ public abstract class AbstractMove implements Comparable<MoveWrapper>{
 	 * Sets the destination index of the move.
 	 * @param startIndex: The index which this move will occupy
 	 */
-	public void setMoveIndex(IndexWrapper moveIndex) {
+	public void setMoveIndex(Index moveIndex) {
 		this.moveIndex = moveIndex;
 	}
 	

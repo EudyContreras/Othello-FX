@@ -3,7 +3,7 @@ package com.eudycontreras.othello.utilities;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
@@ -99,9 +99,9 @@ public class GameTreeUtility {
 		}
 	}
 	
-	private static List<IndexWrapper> buildTrail(ObjectiveWrapper cell){
+	private static List<Index> buildTrail(ObjectiveWrapper cell){
 		
-		List<IndexWrapper> indexes = new ArrayList<>();
+		List<Index> indexes = new ArrayList<>();
 
 		for(int i = 0; i <  cell.getPath().size(); i++){
 			
@@ -228,7 +228,7 @@ public class GameTreeUtility {
 		
 		GameBoardCell[][] cells = new GameBoardCell[currentState.getBoardSize()][currentState.getBoardSize()];
 			
-		IndexWrapper objectiveIndex = move.getObjectiveCell().getIndex();
+		Index objectiveIndex = move.getObjectiveCell().getIndex();
 
 		int whiteCounter = 0;
 		int blackCounter = 0;

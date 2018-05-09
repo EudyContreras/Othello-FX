@@ -1,8 +1,8 @@
 package main;
 
-import com.eudycontreras.othello.capsules.AbstractMove;
+import com.eudycontreras.othello.capsules.AgentMove;
 import com.eudycontreras.othello.controllers.AgentController;
-import com.eudycontreras.othello.controllers.AgentMove;
+import com.eudycontreras.othello.controllers.Agent;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.models.GameBoardState;
 import com.eudycontreras.othello.threading.ThreadManager;
@@ -19,7 +19,7 @@ import com.eudycontreras.othello.threading.TimeSpan;
  * 
  * @author Eudy Contreras
  */
-public class ExampleAgentTwo extends AgentMove{
+public class ExampleAgentTwo extends Agent{
 	
 	
 	public ExampleAgentTwo() {
@@ -39,7 +39,7 @@ public class ExampleAgentTwo extends AgentMove{
 	 * Delete the content of this method and Implement your logic here!
 	 */
 	@Override
-	public AbstractMove getMove(GameBoardState gameState) {
+	public AgentMove getMove(GameBoardState gameState) {
 		return getExampleMove(gameState);
 	}
 	
@@ -51,7 +51,7 @@ public class ExampleAgentTwo extends AgentMove{
 	 * @param gameState
 	 * @return
 	 */
-	private AbstractMove getExampleMove(GameBoardState gameState){
+	private AgentMove getExampleMove(GameBoardState gameState){
 		
 		int waitTime = UserSettings.MIN_SEARCH_TIME; // 1.5 seconds
 		

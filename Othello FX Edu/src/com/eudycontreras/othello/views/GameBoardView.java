@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.eudycontreras.othello.application.OthelloGameView;
 import com.eudycontreras.othello.application.OthelloSettings;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.enumerations.BoardCellType;
 import com.eudycontreras.othello.enumerations.PieceType;
 
@@ -312,7 +312,7 @@ public class GameBoardView extends StackPane {
 
 	}
 		
-	public void setPossibleCells(PieceType pieceType, List<IndexWrapper> indexes) {}
+	public void setPossibleCells(PieceType pieceType, List<Index> indexes) {}
 
 	public void resetCells(){
 		for (int i = 0; i < gameCellView.length; i++) {

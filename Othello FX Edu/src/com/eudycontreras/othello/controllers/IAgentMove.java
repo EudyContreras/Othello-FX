@@ -1,6 +1,6 @@
 package com.eudycontreras.othello.controllers;
 
-import com.eudycontreras.othello.capsules.AbstractMove;
+import com.eudycontreras.othello.capsules.AgentMove;
 import com.eudycontreras.othello.models.GameBoardState;
 
 /**
@@ -19,6 +19,6 @@ import com.eudycontreras.othello.models.GameBoardState;
  */
 public interface IAgentMove {
 	
-	public AbstractMove getMove(GameBoardState gameState);
+	public AgentMove getMove(GameBoardState gameState);
 	
 }

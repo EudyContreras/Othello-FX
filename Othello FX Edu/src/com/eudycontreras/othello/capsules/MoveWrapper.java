@@ -15,11 +15,11 @@ import com.eudycontreras.othello.enumerations.BoardCellState;
  * @author Eudy Contreras
  *
  */
-public class MoveWrapper extends AbstractMove{
+public class MoveWrapper extends AgentMove{
 
 	private int moveReward;
 	
-	private IndexWrapper startIndex;
+	private Index startIndex;
 	
 	private BoardCellState target;
 	
@@ -39,7 +39,7 @@ public class MoveWrapper extends AbstractMove{
 		}
 	}
 	
-	public MoveWrapper(BoardCellState target, IndexWrapper moveIndex, IndexWrapper startIndex, int moveLength) {
+	public MoveWrapper(BoardCellState target, Index moveIndex, Index startIndex, int moveLength) {
 		super();
 		this.moveReward = moveLength;
 		this.moveIndex = moveIndex;
@@ -90,7 +90,7 @@ public class MoveWrapper extends AbstractMove{
 	 * Gets the index from which the move is performed
 	 * @return the start index
 	 */
-	public IndexWrapper getStartIndex() {
+	public Index getStartIndex() {
 		return startIndex;
 	}
 	
@@ -98,7 +98,7 @@ public class MoveWrapper extends AbstractMove{
 	 * Sets the starting index of the move.
 	 * @param startIndex: The index from which the move is performed
 	 */
-	public void setStartIndex(IndexWrapper startIndex) {
+	public void setStartIndex(Index startIndex) {
 		this.startIndex = startIndex;
 	}
 
@@ -130,8 +130,8 @@ public class MoveWrapper extends AbstractMove{
 	 * against the argument
 	 */
 	@Override
-	public int compareTo(MoveWrapper otherMove) {
-		return Integer.compare(getMoveReward(), otherMove.getMoveReward());
+	public int compareTo(AgentMove otherMove) {
+		return Integer.compare(getMoveReward(), ((MoveWrapper) otherMove).getMoveReward());
 	}
 	
 }

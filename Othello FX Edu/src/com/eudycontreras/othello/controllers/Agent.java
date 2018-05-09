@@ -16,7 +16,7 @@ import com.eudycontreras.othello.enumerations.PlayerTurn;
  * 
  * @author Eudy Contreras
  */
-public abstract class AgentMove implements IAgentMove {
+public abstract class Agent implements IAgentMove {
 
 	
 	protected int searchDepth = 0;
@@ -28,7 +28,7 @@ public abstract class AgentMove implements IAgentMove {
 	
 	protected String agentName;
 
-	public AgentMove(PlayerTurn playerTurn){
+	public Agent(PlayerTurn playerTurn){
 		this.playerTurn = playerTurn;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class AgentMove implements IAgentMove {
 	 * Any name with more than 14 characters will be cut off.
 	 * @param agentName
 	 */
-	public AgentMove(String agentName){
+	public Agent(String agentName){
 		this.agentName = agentName;
 	}
 	
@@ -47,7 +47,7 @@ public abstract class AgentMove implements IAgentMove {
 	 * @param agentName
 	 * @param playerTurn
 	 */
-	public AgentMove(String agentName, PlayerTurn playerTurn){
+	public Agent(String agentName, PlayerTurn playerTurn){
 		this.agentName = agentName;
 		this.playerTurn = playerTurn;
 	}

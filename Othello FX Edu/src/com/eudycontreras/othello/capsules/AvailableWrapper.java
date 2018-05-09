@@ -19,10 +19,10 @@ public class AvailableWrapper {
 
 	private PlayerType playerType;
 	
-	private List<IndexWrapper> indexes;
+	private List<Index> indexes;
 
 	
-	public AvailableWrapper(PlayerType playerType, List<IndexWrapper> indexes) {
+	public AvailableWrapper(PlayerType playerType, List<Index> indexes) {
 		super();
 		this.playerType = playerType;
 		this.indexes = indexes;
@@ -32,7 +32,7 @@ public class AvailableWrapper {
 		return playerType;
 	}
 
-	public final List<IndexWrapper> getIndexes() {
+	public final List<Index> getIndexes() {
 		return indexes;
 	}
 	

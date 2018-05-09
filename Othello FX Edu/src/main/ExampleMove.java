@@ -1,6 +1,6 @@
 package main;
 
-import com.eudycontreras.othello.capsules.AbstractMove;
+import com.eudycontreras.othello.capsules.AgentMove;
 import com.eudycontreras.othello.capsules.MoveWrapper;
 
 /**
@@ -18,13 +18,13 @@ import com.eudycontreras.othello.capsules.MoveWrapper;
  * Each implemented class must contain a moveIndex wrapper which 
  * encapsulates information about where to place the chip. A definition of 
  * what a valid move is also needs to be implemented. Please see {@link MoveWrapper}
- * for an example implementation. Also take a look at {@link AbstractMove} for
+ * for an example implementation. Also take a look at {@link AgentMove} for
  * additional details.
  * 
  * @author Eudy Contreras
  *
  */
-public class ExampleMove extends AbstractMove{
+public class ExampleMove extends AgentMove{
 
 	public ExampleMove() {
 		// TODO Auto-generated constructor stub
@@ -35,7 +35,7 @@ public class ExampleMove extends AbstractMove{
 	 * reward of a move.
 	 */
 	@Override
-	public int compareTo(MoveWrapper o) {
+	public int compareTo(AgentMove move) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

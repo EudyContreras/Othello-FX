@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.eudycontreras.othello.application.OthelloSettings;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.MoveWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
@@ -124,7 +124,7 @@ public class GameBoard {
 		}
 	}
 	
-	public GameBoardCell getGameBoardCell(IndexWrapper index){
+	public GameBoardCell getGameBoardCell(Index index){
 		return cells[index.getRow()][index.getCol()];
 	}
 	
@@ -173,9 +173,9 @@ public class GameBoard {
 		return gameCells;
 	}
 
-	public List<IndexWrapper> getGameBoardObjectiveIndexes(BoardCellState state){
+	public List<Index> getGameBoardObjectiveIndexes(BoardCellState state){
 
-		List<IndexWrapper> gameCells = new LinkedList<>();
+		List<Index> gameCells = new LinkedList<>();
 		
 		for (int row = 0; row < cells.length; row++) {
 			for (int col = 0; col < cells[row].length; col++) {
@@ -222,8 +222,8 @@ public class GameBoard {
 		return counter;
 	}
 
-	public void swappColors(List<IndexWrapper> trail, BoardCellState objectiveState) {
-		for (IndexWrapper index: trail) {
+	public void swappColors(List<Index> trail, BoardCellState objectiveState) {
+		for (Index index: trail) {
 			switch(objectiveState){
 			case BLACK_OBJECTIVE:
 				getGameBoardCell(index).swappColor(BoardCellState.BLACK);

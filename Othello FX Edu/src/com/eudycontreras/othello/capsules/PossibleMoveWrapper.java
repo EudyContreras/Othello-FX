@@ -18,16 +18,16 @@ public class PossibleMoveWrapper{
 
 	private final int pathLenght;
 	
-	private List<IndexWrapper> path = new ArrayList<>(64);
+	private List<Index> path = new ArrayList<>(64);
 	
-	private final IndexWrapper startingPoint;
-	private final IndexWrapper endingPoint;
+	private final Index startingPoint;
+	private final Index endingPoint;
 	
 	public PossibleMoveWrapper(int startRow, int startCol, int endRow, int endCol, int pathLength){
-		this(new IndexWrapper(startRow,startCol),new IndexWrapper(endRow,endCol),pathLength);
+		this(new Index(startRow,startCol),new Index(endRow,endCol),pathLength);
 	}
 	
-	public PossibleMoveWrapper(IndexWrapper startingPoint, IndexWrapper endingPoint, int pathLength){
+	public PossibleMoveWrapper(Index startingPoint, Index endingPoint, int pathLength){
 		this.startingPoint = startingPoint;
 		this.endingPoint = endingPoint;
 		this.pathLenght = pathLength;
@@ -37,20 +37,20 @@ public class PossibleMoveWrapper{
 		return pathLenght;
 	}
 
-	public IndexWrapper getStartingPoint() {
+	public Index getStartingPoint() {
 		return startingPoint;
 	}
 
-	public IndexWrapper getEndingPoint() {
+	public Index getEndingPoint() {
 		return endingPoint;
 	}
 	
 
-	public void setPath(List<IndexWrapper> path) {
+	public void setPath(List<Index> path) {
 		this.path.addAll(path);
 	}
 
-	public List<IndexWrapper> getPath() {
+	public List<Index> getPath() {
 		return path;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.eudycontreras.othello.capsules.DirectionWrapper;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.ObjectiveWrapper;
 import com.eudycontreras.othello.capsules.TraversalWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
@@ -37,21 +37,21 @@ public class TraversalUtility {
 			TraversalCardinal.SOUTH_WEST, 
 			TraversalCardinal.WEST, };
 
-	public static final IndexWrapper[] OFFSETS = { 
-			new IndexWrapper(-1,-1), // NORTH_WEST
-			new IndexWrapper( 0,-1), // NORTH
-			new IndexWrapper( 1,-1), // NORTH_EAST
-			new IndexWrapper( 1, 0), // EAST
-			new IndexWrapper( 1, 1), // SOUTH_EAST
-			new IndexWrapper( 0, 1), // SOUTH
-			new IndexWrapper(-1, 1), // SOUTH_WEST
-			new IndexWrapper(-1, 0), // WEST
+	public static final Index[] OFFSETS = { 
+			new Index(-1,-1), // NORTH_WEST
+			new Index( 0,-1), // NORTH
+			new Index( 1,-1), // NORTH_EAST
+			new Index( 1, 0), // EAST
+			new Index( 1, 1), // SOUTH_EAST
+			new Index( 0, 1), // SOUTH
+			new Index(-1, 1), // SOUTH_WEST
+			new Index(-1, 0), // WEST
 	};
 
-	public static final HashMap<IndexWrapper, TraversalCardinal> INDEX_CONVERSION_MAP;
+	public static final HashMap<Index, TraversalCardinal> INDEX_CONVERSION_MAP;
 
 	static {
-		INDEX_CONVERSION_MAP = new HashMap<IndexWrapper, TraversalCardinal>();
+		INDEX_CONVERSION_MAP = new HashMap<Index, TraversalCardinal>();
 
 		INDEX_CONVERSION_MAP.put(OFFSETS[0], CARDINALS[0]);
 		INDEX_CONVERSION_MAP.put(OFFSETS[1], CARDINALS[1]);
@@ -63,10 +63,10 @@ public class TraversalUtility {
 		INDEX_CONVERSION_MAP.put(OFFSETS[7], CARDINALS[7]);
 	}
 
-	public static final HashMap<TraversalCardinal, IndexWrapper> CARDINAL_CONVERSION_MAP;
+	public static final HashMap<TraversalCardinal, Index> CARDINAL_CONVERSION_MAP;
 
 	static {
-		CARDINAL_CONVERSION_MAP = new HashMap<TraversalCardinal, IndexWrapper>();
+		CARDINAL_CONVERSION_MAP = new HashMap<TraversalCardinal, Index>();
 
 		CARDINAL_CONVERSION_MAP.put(CARDINALS[0], OFFSETS[0]);
 		CARDINAL_CONVERSION_MAP.put(CARDINALS[1], OFFSETS[1]);
@@ -88,7 +88,7 @@ public class TraversalUtility {
 		return row > maxRow ? true : row < minRow ? true : false;
 	}
 
-	public static DirectionWrapper getNeighbor(GameBoardCell cell, IndexWrapper offset) {
+	public static DirectionWrapper getNeighbor(GameBoardCell cell, Index offset) {
 
 		int rowOffset = offset.getRow();
 		int colOffset = offset.getCol();
@@ -288,7 +288,7 @@ public class TraversalUtility {
 
 		if (!paths.isEmpty()) {
 
-			IndexWrapper index = paths.get(0).getIndex();
+			Index index = paths.get(0).getIndex();
 
 			GameBoardCell cell = source.getGameBoard().getGameBoardCell(index);
 

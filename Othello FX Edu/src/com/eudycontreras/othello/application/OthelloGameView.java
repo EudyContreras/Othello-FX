@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.eudycontreras.othello.callbacks.EventCallbackController;
 import com.eudycontreras.othello.callbacks.EventCallbackView;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.TrailWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.GameEndState;
@@ -501,17 +501,17 @@ public class OthelloGameView{
 		}
 
 		@Override
-		public void showPossibleCell(PlayerType player, IndexWrapper index) {
+		public void showPossibleCell(PlayerType player, Index index) {
 			gameBoardView.applyTraversableEffect(getPieceType(player), index.getRow(), index.getCol());
 		}
 
 		@Override
-		public void hidePossibleCell(PlayerType player, IndexWrapper index) {
+		public void hidePossibleCell(PlayerType player, Index index) {
 			gameBoardView.removeTraversableEffect(getPieceType(player), index.getRow(), index.getCol());
 		}
 
 		@Override
-		public void hidePossibleCell(PlayerType player, IndexWrapper index, boolean state) {
+		public void hidePossibleCell(PlayerType player, Index index, boolean state) {
 			gameBoardView.removeTraversableEffect(getPieceType(player), index.getRow(), index.getCol(), state);
 		}
 		
@@ -522,19 +522,19 @@ public class OthelloGameView{
 			
 			PieceType type = getPieceTypeFromObjective(trailWrapper.getObjectiveState());
 			
-			for(IndexWrapper index: trailWrapper.getTrail()){
+			for(Index index: trailWrapper.getTrail()){
 				othello.log("Swapping color of: " + index + " to Color: " + type);
 				gameBoardView.swapPiece(type, index.getRow(), index.getCol());
 			}
 		}
 
 		@Override
-		public void setPossibleCells(PlayerType player, List<IndexWrapper> indexes) {
+		public void setPossibleCells(PlayerType player, List<Index> indexes) {
 			gameBoardView.setPossibleCells(getPieceType(player), indexes);
 		}
 
 		@Override
-		public void showPossibleMove(PlayerType player, IndexWrapper index) {
+		public void showPossibleMove(PlayerType player, Index index) {
 			gameBoardView.applyPossibleMoveEffect(getPieceType(player), index.getRow(), index.getCol());
 		}
 

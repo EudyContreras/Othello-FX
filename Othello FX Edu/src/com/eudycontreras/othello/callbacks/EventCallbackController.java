@@ -2,7 +2,7 @@ package com.eudycontreras.othello.callbacks;
 
 import java.util.List;
 
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.enumerations.GameEndState;
 import com.eudycontreras.othello.enumerations.PlayerType;
 import com.eudycontreras.othello.models.GameBoardCell;
@@ -28,19 +28,19 @@ public interface EventCallbackController {
 
 	void endGame(GameEndState endState);
 
-	void showPossibleMove(PlayerType player, IndexWrapper index);
+	void showPossibleMove(PlayerType player, Index index);
 	
 	void hidePossibleMove();
 	
-	void showPossibleCell(PlayerType player, IndexWrapper index);
+	void showPossibleCell(PlayerType player, Index index);
 
-	void hidePossibleCell(PlayerType playerOne, IndexWrapper index);
+	void hidePossibleCell(PlayerType playerOne, Index index);
 	
-	void hidePossibleCell(PlayerType playerOne, IndexWrapper index, boolean state);
+	void hidePossibleCell(PlayerType playerOne, Index index, boolean state);
 
 	void convertEnclosedCells(GameBoardCell gameBoardCell);
 
-	void setPossibleCells(PlayerType playerOne, List<IndexWrapper> gameBoardObjectiveIndexes);
+	void setPossibleCells(PlayerType playerOne, List<Index> gameBoardObjectiveIndexes);
 
 	void displayInformation(int depthCounter, int leafCounter, int pruneCounter, int nodesExamined);
 

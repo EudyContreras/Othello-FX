@@ -1,7 +1,7 @@
 package com.eudycontreras.othello.application;
 
 import com.eudycontreras.othello.controllers.AgentController;
-import com.eudycontreras.othello.controllers.AgentMove;
+import com.eudycontreras.othello.controllers.Agent;
 import com.eudycontreras.othello.controllers.GameController;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.GameMode;
@@ -35,7 +35,7 @@ public class Othello {
 	
 	private OthelloGameView othelloGameView;
 	
-	public Othello(Stage primaryStage, AgentMove agentOne, AgentMove agentTwo) {
+	public Othello(Stage primaryStage, Agent agentOne, Agent agentTwo) {
 		this.gameController = new GameController(this);
 		this.agentController = new AgentController(this, agentOne, agentTwo);
 		this.othelloGame = new OthelloGame(OthelloSettings.DEFAULT_BOARD_GRID_SIZE);
@@ -85,7 +85,7 @@ public class Othello {
 	}
 	
 	
-	public Othello(Stage primaryStage, AgentMove agent) {
+	public Othello(Stage primaryStage, Agent agent) {
 		this(primaryStage, agent, null);
 	}
 	

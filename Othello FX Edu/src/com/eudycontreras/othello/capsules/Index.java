@@ -11,12 +11,12 @@ package com.eudycontreras.othello.capsules;
  * 
  * @author Eudy Contreras
  */
-public class IndexWrapper{
+public class Index{
 
 	private final int row;
 	private final int col;
 
-	public IndexWrapper(int row, int col){
+	public Index(int row, int col){
 		this.row = row;
 		this.col = col;
 	}
@@ -45,7 +45,7 @@ public class IndexWrapper{
 
 	@Override
 	public boolean equals(Object obj) {
-		IndexWrapper other = (IndexWrapper) obj;
+		Index other = (Index) obj;
 		if (col != other.col)
 			return false;
 		if (row != other.row)

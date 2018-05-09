@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.eudycontreras.othello.capsules.DirectionWrapper;
-import com.eudycontreras.othello.capsules.IndexWrapper;
+import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.capsules.TrailWrapper;
 import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.utilities.TraversalUtility;
@@ -26,9 +26,9 @@ public class GameBoardCell {
 
 	private GameBoard gameBoard;
 	
-	private final IndexWrapper index;
+	private final Index index;
 	
-	private List<IndexWrapper> trail = new LinkedList<>();
+	private List<Index> trail = new LinkedList<>();
 
 	private List<DirectionWrapper> neighbors = new LinkedList<>();
 
@@ -46,7 +46,7 @@ public class GameBoardCell {
 		this.col = col;
 		this.gameBoard = gameBoard;
 		this.cellState = cellState;
-		this.index = new IndexWrapper(row, col);	
+		this.index = new Index(row, col);	
 	}
 
 	public void computeNeighbors() {
@@ -64,7 +64,7 @@ public class GameBoardCell {
 		return BoardCellState.EMPTY;
 	}
 	
-	public void setObjective(BoardCellState cellState, List<IndexWrapper> trail) {
+	public void setObjective(BoardCellState cellState, List<Index> trail) {
 		this.objectiveState = cellState;
 		this.trail.addAll(trail);
 	}
@@ -123,7 +123,7 @@ public class GameBoardCell {
 		return col;
 	}
 	
-	public IndexWrapper getIndex(){
+	public Index getIndex(){
 		return index;
 	}
 	

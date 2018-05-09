@@ -19,9 +19,9 @@ public class TrailWrapper {
 
 	private BoardCellState objectiveState;
 	
-	private List<IndexWrapper> trail;
+	private List<Index> trail;
 	
-	public TrailWrapper(BoardCellState objectiveState, List<IndexWrapper> trail) {
+	public TrailWrapper(BoardCellState objectiveState, List<Index> trail) {
 		this.objectiveState = objectiveState;
 		this.trail = trail;
 	}
@@ -34,11 +34,11 @@ public class TrailWrapper {
 		this.objectiveState = objectiveState;
 	}
 
-	public List<IndexWrapper> getTrail() {
+	public List<Index> getTrail() {
 		return trail;
 	}
 
-	public void setTrail(List<IndexWrapper> trail) {
+	public void setTrail(List<Index> trail) {
 		this.trail = trail;
 	}
 }
