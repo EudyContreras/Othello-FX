@@ -32,7 +32,7 @@ Refer to the main folder in order to find the documented files you need. There y
 Implement a move if necessary or use the existing implementation. A move must extend from [Agent Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/AgentMove.java) and implement the compareTo and the IsValid methods. In those methods you define what makes a move better than the other as well as how you define a move as valid. Take a look at [Move Wrapper](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/capsules/MoveWrapper.java) for an example of how a move is implemented. Only the isValid and the compareTo method are needed by the framework but as you can see you can also create your own helper methods.
 
 
-> Example Move class which extends from AbstractMove
+> Example Move class which extends from AgentMove
 ```java
 
 public class ExampleMove extends AgentMove{
@@ -56,10 +56,10 @@ public class ExampleMove extends AgentMove{
 
 #### AI Agent
 
-Your agent must extend from the [Agent Move](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/AgentMove.java) which is a simple POJO containing important information used for determining how good your move algorithm performs, along with other information regarding the move search. The constructor of an *AgentMove* allows the turn/type to be specified as well as a name in case you wish to give your agent a name.
+Your agent must extend from the [Agent](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/Agent.java) which is a simple POJO containing important information used for determining how good your move algorithm performs, along with other information regarding the move search. The constructor of an *AgentMove* allows the turn/type to be specified as well as a name in case you wish to give your agent a name.
 
 
-> Example Agent class which extends from AgentMove
+> Example Agent class which extends from Agent
 ```java
 
 public class ExampleAgent extends Agent{
