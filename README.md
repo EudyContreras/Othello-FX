@@ -6,6 +6,9 @@
 
 
 
+
+## Description
+
 This is an an Othello/Riversi game made in Java using JavaFX GUI Framework. 
 The game allows you to implement and add your own AI agents which you will then be able to test and play againts. OthelloFX comes with 3 different Agent implementations purposefully excluding the usual ones such as MiniMax which you will have to implement on your own. The framework can run in multiple modes:
 
@@ -103,19 +106,19 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 
 
 
-| Property                 	| Values                               | Description                                  |
-| ----------------------------- | ------------------------------------ | -------------------------------------------- |
-| DEEPENING                	| NONE, ITERATIVE, DYNAMIC             | Sets the deepening style to use.             |
-| GAME_MODE             	| P vs P, A vs A, P vs A               | Sets the game mode player vs player, etc     |
-| MAX_SEARCH_TIME          	| 5000      milliseconds               | Sets the maximun allowed search time         |
-| MIN_SEARCH_TIME          	| 0         milliseconds               | Sets the minimun allowed search time         |
-| SEARCH_TIME              	| 0 - 5000  milliseconds               | Sets the search time to aim for              |
-| PLAYER_ONE               	| Any String                           | Sets the name of the player one              |
-| PLAYER_TWO               	| Any String                           | Sets the name of the player two              |
-| USE_ANIMATION            	| true or false                        | Sets whether animations should be use or not |
-| GAME_WINDOW_SCALE        	| 0 - 2                                | Sets the scale of of the window. Default = 1 |
-| BOARD_GRID_SIZE          	| 4, 6, 8                              | Sets the size of the board to be used        |
-| THEME_INDEX              	| 0 - 13                               | Sets the theme to be used at startup         |
+| Property                    | Values                                   | Description                                     |
+| ----------------------------| ---------------------------------------- | ------------------------------------------------|
+| DEEPENING                   | NONE, ITERATIVE, DYNAMIC                 | Sets the deepening style to use.          	   |
+| GAME_MODE                   | Ply vs Ply, Agent vs Agent, Ply vs Agent | Sets the game mode to use 	   		   | 
+| MAX_SEARCH_TIME             | 5000      milliseconds by rules          | Sets the maximun allowed search time            |
+| MIN_SEARCH_TIME             | 0         milliseconds               	 | Sets the minimun allowed search time            |
+| SEARCH_TIME                 | 0 - 5000  milliseconds                   | Sets the search time to aim for                 |
+| PLAYER_ONE                  | Any String                               | Sets the name of the player one                 |
+| PLAYER_TWO                  | Any String                               | Sets the name of the player two                 |
+| USE_ANIMATION               | true or false                            | Sets whether animations should be used 	   |
+| GAME_WINDOW_SCALE           | 0 - 2                                    | Sets the scale of of the window.		   |
+| BOARD_GRID_SIZE             | 4, 6, 8                                  | Sets the size of the board to be used           |
+| THEME_INDEX                 | 0 - 13                                   | Sets the theme to be used at startup            |
 
 
 
