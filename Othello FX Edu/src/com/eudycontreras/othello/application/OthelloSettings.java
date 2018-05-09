@@ -87,7 +87,13 @@ public class OthelloSettings {
 			return "Agent";
 		}else{
 		
-			return name != null ? name : "Player One";
+			String fixedName = name;
+			
+			if(fixedName.length() > 14){
+				fixedName = fixedName.substring(0, 14);
+			}
+			
+			return fixedName != null ? fixedName : "Player One";
 		}
 	}
 	
@@ -95,7 +101,14 @@ public class OthelloSettings {
 		if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
 			return "Agent Two";
 		}
-		return name != null ? name : "Player Two";
+		
+		String fixedName = name;
+		
+		if(fixedName.length() > 14){
+			fixedName = fixedName.substring(0, 14);
+		}
+		
+		return fixedName != null ? fixedName : "Player Two";
 	}
 	
 	public static class Menu{

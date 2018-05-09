@@ -123,7 +123,7 @@ public class OthelloGameView{
 	            }
 	        });
 			
-			scene = new Scene(root, UserSettings.USE_ANIMATION ? Color.TRANSPARENT : Color.BLACK);	
+			scene = new Scene(root, Color.TRANSPARENT);	
 			scene.getStylesheets().add(getClass().getResource(OthelloSettings.STYLESHEET).toExternalForm());
 			
 		} catch (Exception e) {
@@ -151,6 +151,10 @@ public class OthelloGameView{
 	    
 	    gameAboutView.setContinueAction(()->{
 	    	gameBlurView.revertBlurAnimation(null);
+	    });
+	    
+	    gameAboutView.setHideAction(()->{
+	    	viewCallback.onGameResumed();
 	    });
 	      
 	    gameScreen.getChildren().add(filler);
@@ -204,7 +208,10 @@ public class OthelloGameView{
 			root.setScaleY(0);
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
 		}else{
-			primaryStage.initStyle(StageStyle.UNDECORATED);
+			root.setOpacity(0);
+			root.setScaleX(0);
+			root.setScaleY(0);
+			primaryStage.initStyle(StageStyle.TRANSPARENT);
 		}
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -326,6 +333,9 @@ public class OthelloGameView{
 			});
 			fade.play();
 		}else{
+			root.setOpacity(1);
+			root.setScaleX(OthelloSettings.SCENE_SCALE);
+			root.setScaleY(OthelloSettings.SCENE_SCALE);
 			if(script!=null){
 				hideOverlay(); 
 				gameMenuView.showLogos();
@@ -402,7 +412,7 @@ public class OthelloGameView{
 		if(gameAboutView.isShowing()){
 			return;
 		}
-		
+		viewCallback.onGamePaused();
 		gameAboutView.setShowing(true);
 		if(UserSettings.USE_ANIMATION){
 			gameBlurView.applyBlurAnimation();
@@ -506,7 +516,7 @@ public class OthelloGameView{
 		}
 		
 		@Override
-		public void convertEnclosedCells(GameBoardCell gameBoardCell) {
+		public synchronized void convertEnclosedCells(GameBoardCell gameBoardCell) {
 			
 			TrailWrapper trailWrapper = gameBoardCell.getTrailWrapper();
 			

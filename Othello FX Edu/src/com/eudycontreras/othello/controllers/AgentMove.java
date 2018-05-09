@@ -32,10 +32,21 @@ public abstract class AgentMove implements IAgentMove {
 		this.playerTurn = playerTurn;
 	}
 	
+	/**
+	 * The name must be less than 15 characters long
+	 * Any name with more than 14 characters will be cut off.
+	 * @param agentName
+	 */
 	public AgentMove(String agentName){
 		this.agentName = agentName;
 	}
 	
+	/**
+	 * The name must be less than 15 characters long
+	 * Any name with more than 14 characters will be cut off.
+	 * @param agentName
+	 * @param playerTurn
+	 */
 	public AgentMove(String agentName, PlayerTurn playerTurn){
 		this.agentName = agentName;
 		this.playerTurn = playerTurn;

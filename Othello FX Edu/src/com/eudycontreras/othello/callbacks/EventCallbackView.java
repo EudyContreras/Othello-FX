@@ -22,5 +22,9 @@ public interface EventCallbackView {
 	void setMousePressedEvent(MouseEvent e, int row, int col);
 
 	void resetBoard(int delay);
-
+	
+	void onGamePaused();
+	
+	void onGameResumed();
+	
 }

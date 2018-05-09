@@ -45,6 +45,8 @@ import main.UserSettings;
  */
 public class GameController {
 
+
+	private boolean gamePaused;
 	private boolean gameFinished;
 	
 	private boolean determiningWinner;
@@ -61,6 +63,7 @@ public class GameController {
 	private EventCallbackController callbackController;
 	
 	private PlayerTurn currentTurn = PlayerTurn.PLAYER_ONE;
+	private PlayerTurn lastTurn = null;
 	
 	public GameController(Othello othello){
 		this.othello = othello;
@@ -399,6 +402,23 @@ public class GameController {
 		return othelloGame;
 	}
 
+
+	public boolean isGamePaused() {
+		return gamePaused;
+	}
+
+	public void setGamePaused(boolean gamePaused) {
+		this.gamePaused = gamePaused;
+	}
+
+	public boolean isGameFinished() {
+		return gameFinished;
+	}
+
+	public void setGameFinished(boolean gameFinished) {
+		this.gameFinished = gameFinished;
+	}
+
 	public void setOthelloGame(OthelloGame othelloGame) {
 		this.othelloGame = othelloGame;
 	}
@@ -528,9 +548,14 @@ public class GameController {
 
 		@Override
 		public void resetBoard(int delay) {
-
 			
-			gameFinished = false;
+			if(timerControl != null){
+				timerControl.stopTimer(true);
+				timerControl = null;
+			}
+			
+			
+			gameFinished = true;
 			determiningWinner = false;
 			othelloGame.getGameBoard().resetBoard();
 			currentTurn = PlayerTurn.PLAYER_ONE;
@@ -548,7 +573,28 @@ public class GameController {
 			setInitialState(delay);
 
 			if(OthelloSettings.USE_AI_AGENT){
-				othello.setAgentMove(PlayerTurn.PLAYER_ONE);
+				ThreadTimer.schedule(TimeSpan.millis(UserSettings.START_DELAY), ()->{
+					gameFinished = false;
+					othello.setAgentMove(PlayerTurn.PLAYER_ONE);
+				});
+			}
+		
+		}
+
+		@Override
+		public void onGamePaused() {
+			setGamePaused(true);
+		}
+
+		@Override
+		public void onGameResumed() {
+			setGamePaused(false);
+			if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
+				othello.setAgentMove(lastTurn);
+			}else if(UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT){
+				if(lastTurn == PlayerTurn.PLAYER_ONE){
+					othello.setAgentMove(PlayerTurn.PLAYER_ONE);
+				}
 			}
 		}	
 	};
@@ -578,6 +624,10 @@ public class GameController {
 		
 		if(gameFinished)
 			return;
+		
+		if(gamePaused){
+			return;
+		}
 	
 		
 		if(move.isValid()){
@@ -597,7 +647,8 @@ public class GameController {
 		
 		if(OthelloSettings.USE_AI_AGENT && UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
 			ThreadTimer.schedule(TimeSpan.millis(UserSettings.TURN_INTERVAL), ()->{
-				othello.setAgentMove(GameTreeUtility.getCounterPlayer(playerTurn));
+				lastTurn = GameTreeUtility.getCounterPlayer(playerTurn);
+				othello.setAgentMove(lastTurn);
 			});
 		}
 	}

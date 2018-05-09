@@ -147,6 +147,10 @@ public class AgentController {
 	
 	public synchronized void makeMove(PlayerTurn agentTurn, GameBoard gameBoard) {
 
+		if(othello.getGameController().isGamePaused()){
+			return;
+		}
+		
 		AgentMove agent = getAgent(agentTurn);
 		
 		
@@ -174,11 +178,14 @@ public class AgentController {
 					agent.getPrunedCounter(), 
 					agent.getNodesExamined());
 			
-			System.out.println("SEARCH DEPTH: " + agent.getSearchDepth());
-			System.out.println("TOTAL NODES PRUNED: " + agent.getPrunedCounter());
-			System.out.println("TOTAL LEAFS REACHED: " + agent.getReachedLeafNodes());
-			System.out.println("TOTAL NODES EXAMINED: " + agent.getNodesExamined());
-			System.out.println();
+			
+			if(OthelloSettings.DEBUG_GAME){
+				System.out.println("SEARCH DEPTH: " + agent.getSearchDepth());
+				System.out.println("TOTAL NODES PRUNED: " + agent.getPrunedCounter());
+				System.out.println("TOTAL LEAFS REACHED: " + agent.getReachedLeafNodes());
+				System.out.println("TOTAL NODES EXAMINED: " + agent.getNodesExamined());
+				System.out.println();
+			}
 				
 			agent.resetCounters();
 

@@ -4,11 +4,15 @@ import com.eudycontreras.othello.controllers.AgentController;
 import com.eudycontreras.othello.controllers.AgentMove;
 import com.eudycontreras.othello.controllers.GameController;
 import com.eudycontreras.othello.enumerations.BoardCellState;
+import com.eudycontreras.othello.enumerations.GameMode;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
 import com.eudycontreras.othello.models.GameBoardCell;
+import com.eudycontreras.othello.threading.ThreadTimer;
+import com.eudycontreras.othello.threading.TimeSpan;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import main.UserSettings;
 
 /**
  * <H2>Created by</h2> Eudy Contreras
@@ -39,12 +43,27 @@ public class Othello {
 	
 		this.othelloGameView.setViewCallback(gameController.getViewCallback());
 		
-		if(agentOne != null && agentOne.getAgentName() != null){
-			othelloGameView.setPlayerOne(agentOne.getAgentName());
-		}
-		
-		if(agentTwo != null && agentTwo.getAgentName() != null){
-			othelloGameView.setPlayerTwo(agentTwo.getAgentName());
+		if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
+			if(agentOne != null && agentOne.getAgentName() != null){
+				if(agentOne.getAgentName().length() > 14){
+					agentOne.setAgentName(agentOne.getAgentName().substring(0, 14));
+				}
+				othelloGameView.setPlayerOne(agentOne.getAgentName());
+			}
+			
+			if(agentTwo != null && agentTwo.getAgentName() != null){
+				if(agentTwo.getAgentName().length() > 14){
+					agentTwo.setAgentName(agentTwo.getAgentName().substring(0, 14));
+				}
+				othelloGameView.setPlayerTwo(agentTwo.getAgentName());
+			}
+		}else if(UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT){
+			if(agentOne != null && agentOne.getAgentName() != null){
+				if(agentOne.getAgentName().length() > 14){
+					agentOne.setAgentName(agentOne.getAgentName().substring(0, 14));
+				}
+				othelloGameView.setPlayerOne(agentOne.getAgentName());
+			}	
 		}
 		
 		this.gameController.setOthelloGame(othelloGame);
@@ -55,10 +74,13 @@ public class Othello {
 		
 		this.gameController.initialize();
 		
-
 		this.othelloGameView.openGame(()->{
 			this.gameController.setInitialState(0);
-			this.setAgentMove(PlayerTurn.PLAYER_ONE);
+			if(OthelloSettings.USE_AI_AGENT){
+				ThreadTimer.schedule(TimeSpan.millis(UserSettings.START_DELAY), ()->{
+					this.setAgentMove(PlayerTurn.PLAYER_ONE);
+				});
+			}
 		});
 	}
 	

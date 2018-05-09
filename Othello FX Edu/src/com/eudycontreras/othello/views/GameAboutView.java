@@ -61,6 +61,7 @@ public class GameAboutView extends Group {
 	private ImageView profilePic = new ImageView();
 
 	private Runnable continueAction = null;
+	private Runnable hideAction = null;
 
 	private boolean showing = false;
 
@@ -146,6 +147,10 @@ public class GameAboutView extends Group {
 	public void setContinueAction(Runnable action) {
 		this.continueAction = action;
 	}
+	
+	public void setHideAction(Runnable action){
+		this.hideAction = action;
+	}
 
 	public void showAboutView() {
 
@@ -208,6 +213,9 @@ public class GameAboutView extends Group {
 
 	private void animateHide(int miliseconds) {
 		if(!UserSettings.USE_ANIMATION){
+			if(hideAction != null){
+				hideAction.run();
+			}
 			this.setScaleX(0);
 			this.setScaleY(0);
 			this.setOpacity(0);
@@ -241,6 +249,9 @@ public class GameAboutView extends Group {
 		scaleTransition.setToY(0);
 
 		scaleTransition.setOnFinished(e -> {
+			if(hideAction != null){
+				hideAction.run();
+			}
 			setMouseTransparent(true);
 			setVisible(false);
 			setShowing(false);

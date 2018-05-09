@@ -1,7 +1,9 @@
 package main;
 
 import com.eudycontreras.othello.application.Othello;
+import com.eudycontreras.othello.enumerations.BoardCellState;
 import com.eudycontreras.othello.enumerations.PlayerTurn;
+import com.eudycontreras.othello.models.GameBoardCell;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -58,5 +60,44 @@ public class AgentManager extends Application{
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static void printBoard(GameBoardCell[][] cells) {
+		printBoard(cells, false);
+	}
+	
+	public static void printBoard(GameBoardCell[][] cells, boolean print) {
+		
+		if(!print){
+			return;
+		}
+		
+		System.out.println();
+		
+		System.out.print(" ");
+		for (int row = 0; row < cells.length; row++) {
+			System.out.print("   "+row);
+		}
+		System.out.println();
+		for (int row = 0; row < cells.length; row++) {
+
+			System.out.println("  ---------------------------------");
+
+			System.out.print(row + " |");
+
+			for (int col = 0; col < cells[row].length; col++) {
+
+				if (cells[col][row].getCellState() != BoardCellState.EMPTY) {
+					System.out.print(" " + cells[col][row] + " |");
+				} else {
+					System.out.print(" " + " " + " |");
+				}
+			}
+
+			System.out.println("");
+		}
+		System.out.println("  ---------------------------------");
+		
+		System.out.println();
 	}
 }
