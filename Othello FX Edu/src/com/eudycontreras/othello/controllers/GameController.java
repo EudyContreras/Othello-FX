@@ -545,10 +545,17 @@ public class GameController {
 			
 			}
 		}
-
+		
+		
 		@Override
 		public void resetBoard(int delay) {
-			
+			resetBoard(delay, null);
+		
+		}
+
+		@Override
+		public void resetBoard(int delay, Runnable endScript) {
+
 			if(timerControl != null){
 				timerControl.stopTimer(true);
 				timerControl = null;
@@ -578,8 +585,8 @@ public class GameController {
 					othello.setAgentMove(PlayerTurn.PLAYER_ONE);
 				});
 			}
+		}	
 		
-		}
 
 		@Override
 		public void onGamePaused() {
@@ -589,14 +596,16 @@ public class GameController {
 		@Override
 		public void onGameResumed() {
 			setGamePaused(false);
-			if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
-				othello.setAgentMove(lastTurn);
-			}else if(UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT){
-				if(lastTurn == PlayerTurn.PLAYER_ONE){
-					othello.setAgentMove(PlayerTurn.PLAYER_ONE);
+			if(!isGameFinished()){
+				if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
+					othello.setAgentMove(lastTurn);
+				}else if(UserSettings.GAME_MODE == GameMode.HUMAN_VS_AGENT){
+					if(lastTurn == PlayerTurn.PLAYER_ONE){
+						othello.setAgentMove(PlayerTurn.PLAYER_ONE);
+					}
 				}
 			}
-		}	
+		}
 	};
 
 	public void setInitialState(int delay) {

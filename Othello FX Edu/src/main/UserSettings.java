@@ -30,7 +30,7 @@ public class UserSettings {
 	public static final int START_DELAY = 1000;
 	/**
 	 * Used for defining the maximum search time.
-	 * By popular rules the max search tiem should not
+	 * By popular rules the max search time should not
 	 * go above 5000 milliseconds;
 	 */
 	public static final int MAX_SEARCH_TIME = 4000;
@@ -53,7 +53,7 @@ public class UserSettings {
 	 * Agent vs Agent is active. Adjust to better see
 	 * play sequence or to make the game go quick.
 	 */
-	public static final int TURN_INTERVAL = 0;
+	public static final int TURN_INTERVAL = 10;
 	/**
 	 * Used for defining the maximum value
 	 */

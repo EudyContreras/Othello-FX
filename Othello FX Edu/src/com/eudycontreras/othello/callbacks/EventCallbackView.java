@@ -23,6 +23,8 @@ public interface EventCallbackView {
 
 	void resetBoard(int delay);
 	
+	void resetBoard(int delay, Runnable endScript);
+	
 	void onGamePaused();
 	
 	void onGameResumed();

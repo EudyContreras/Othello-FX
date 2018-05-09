@@ -8,10 +8,13 @@ import com.eudycontreras.othello.application.OthelloSettings;
 import com.eudycontreras.othello.capsules.Index;
 import com.eudycontreras.othello.enumerations.BoardCellType;
 import com.eudycontreras.othello.enumerations.PieceType;
+import com.eudycontreras.othello.threading.ThreadTimer;
+import com.eudycontreras.othello.threading.TimeSpan;
 
 import javafx.animation.Interpolator;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Transition;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
@@ -336,31 +339,46 @@ public class GameBoardView extends StackPane {
 	}
 	
 	public void resetBoard(int delay) {	
+		
+		othelloGame.getViewCallback().onGamePaused();
+		
+		if(UserSettings.USE_ANIMATION){
+
+			ThreadTimer.schedule(TimeSpan.millis(500+(UserSettings.TURN_INTERVAL + UserSettings.MIN_SEARCH_TIME)), ()-> {
+				Platform.runLater(()->{
+					othelloGame.getGameScoreView().resetScore();
+					
+					for(GamePieceView piece : pieces){
+						piece.removeFromBoard(null);
+					}
+
+					
+					if(!pieces.isEmpty())
+					pieces.get(pieces.size()-1).setEndAction(()-> {
+					
+							pieces.clear();
+							
+							othelloGame.getViewCallback().onGameResumed();
+							othelloGame.getViewCallback().resetBoard(delay);
+						
+					});
+					
+				});
+			});
+			
+			return;
+		}
+		
 		othelloGame.getGameScoreView().resetScore();
 		
 		for(GamePieceView piece : pieces){
 			piece.removeFromBoard(null);
 		}
 		
-		if(!UserSettings.USE_ANIMATION){
-			pieces.clear();
+		pieces.clear();
 
-			if(UserSettings.USE_ANIMATION){
-				othelloGame.getViewCallback().resetBoard(delay);
-			}else{
-				othelloGame.getViewCallback().resetBoard(0);
-			}
-			
-			return;
-		}
-		
-		if(!pieces.isEmpty())
-		pieces.get(pieces.size()-1).setEndAction(()-> {
-			
-			pieces.clear();
-
-			othelloGame.getViewCallback().resetBoard(delay);
-		});
+		othelloGame.getViewCallback().onGameResumed();
+		othelloGame.getViewCallback().resetBoard(0);
 		
 	}
 
