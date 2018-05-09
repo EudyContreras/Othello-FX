@@ -190,7 +190,7 @@ Econtreras12@live.com
 
 ### Disclaimer
 
-All background images including the logo were not made by me and I do not claim ownership of these images. I would like to thanks the awesome artist and creators of the images for making them public. If there is any problem with the use of those images please contact me so we can solve it. Once again props to the artists.
+All background images including the logo were not made by me and I do not claim ownership of these images. I would like to thank the awesome artists and creators of the images for making them public. If there is any problem with the use of these images please contact me so we can solve it. Once again. props to the artists.
 
 
 
