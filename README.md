@@ -118,7 +118,6 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 | **MIN_SEARCH_TIME**          | 0         milliseconds               	 | Sets the minimun allowed search time            |
 | **TURN_INTERVAL**            | 0         milliseconds               	 | Sets the time interval between moves            |
 | **START_DELAY**              | 0         milliseconds             	 | Sets the delay before the first move is made    |
-| **SEARCH_TIME**             | 0 - 5000  milliseconds                   | Sets the search time to aim for                 |
 | **PLAYER_ONE**              | Any String                               | Sets the name of the player one                 |
 | **PLAYER_TWO**              | Any String                               | Sets the name of the player two                 |
 | **USE_ANIMATION**            | true or false                            | Sets whether animations should be used 	   |
