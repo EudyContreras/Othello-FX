@@ -145,7 +145,7 @@ Things you need in order to be able to run *OthelloFX*
 
 
 
-### Built With
+#### Built With
 
 ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
 * [JavaFX](https://en.wikipedia.org/wiki/JavaFX) - The GUI framework used
@@ -154,21 +154,21 @@ Things you need in order to be able to run *OthelloFX*
 
 
 
-### Contributing
+#### Contributing
 
 
 Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/CONTRIBUTING.md) for details on the code base code of conduct, and the process for submitting pull requests to *OthelloFX*
 
 
 
-### Authors
+#### Authors
 
 
 * **Eudy Contreras** 
 
 
 
-### Acknowledgments
+#### Acknowledgments
 
 
 * Jose Font for inspiration and education.
@@ -176,11 +176,15 @@ Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework
 
 
 
-### Contact
+#### Contact
 
 
 If any questions reach me at.
 Econtreras12@live.com
+
+
+
+
 
 
 
