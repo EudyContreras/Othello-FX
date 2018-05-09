@@ -95,10 +95,12 @@ public class AgentManager extends Application{
 ```
 
 
+
 #### Notes
 
 
 Take a look at the [Agent Controller](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/Othello%20FX%20Edu/src/com/eudycontreras/othello/controllers/AgentController.java) to see a variety of helper methods as well as various implementations of different dumb and smart agents. There are other utility classes which might be of help. Explore the utilities package!
+
 
 
 #### Customization
@@ -126,11 +128,13 @@ The [User Settings](https://github.com/EudyContreras/Othello-FX-Framework/blob/m
 
 
 
+
 #### Prerequisites
 
 Things you need in order to be able to run *OthelloFX*
 
 * [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or highter
+
 
 
 
@@ -145,6 +149,7 @@ Things you need in order to be able to run *OthelloFX*
 
 
 
+
 #### Future works
 
 
@@ -154,11 +159,14 @@ There are some things which I plan to add to the framework. These things will be
 - [ ] **Maybe a online multiplayer option**
 
 
+
+
 #### Built With
 
 ![JavaFX](https://github.com/EudyContreras/Othello-FX-Framework/blob/master/javaFX.png)
 * [JavaFX](https://en.wikipedia.org/wiki/JavaFX) - The GUI framework used
 * [Java](https://maven.apache.org/) - The programming language used
+
 
 
 
@@ -177,11 +185,13 @@ Please read [Contributing](https://github.com/EudyContreras/Othello-FX-Framework
 
 
 
+
 #### Acknowledgments
 
 
 * **Jose Font** for inspiration and education.
 * Other teachers at Malmö Univertiy.
+
 
 
 
@@ -199,7 +209,8 @@ Econtreras12@live.com
 
 ### Disclaimer
 
-**All background images including the logo **were not made by me and I do not claim ownership of these images**. I would like to thank the awesome artists and creators of the images for making them public. If there is any problem with the use of these images please contact me so we can solve it. Once again. props to the artists.
+**All background images including the logo were not made by me and I do not claim ownership of these images**. I would like to thank the awesome artists and creators of the images for making them public. If there is any problem with the use of these images please contact me so we can solve it. Once again. props to the artists.
+
 
 
 
