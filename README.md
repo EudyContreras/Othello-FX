@@ -154,8 +154,8 @@ Things you need in order to be able to run *OthelloFX*
 
 There are some things which I plan to add to the framework. These things will be shown here along with popular demands
 
-> - [ ] **More options to the menu so that users have more controll through the interface**.
-> - [ ] **Maybe a online multiplayer option**
+> - [ ] **More options to the main menu so that users have more control through the interface**.
+> - [ ] **Maybe an online multiplayer option for users to test their agents remotely in competitions**
 
 
 
