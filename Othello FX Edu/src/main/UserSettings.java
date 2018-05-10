@@ -109,7 +109,7 @@ public class UserSettings {
 	/**
 	 * Weight from high to low. The higher the 
 	 * weight the higher the reward. Take a look at
-	 * the weight matrix inside AgentManager to see how
+	 * the weight matrix insidet the AgentController to see how
 	 * the weights are distributed. Feel free to modify
 	 * the weights in order to achieve desired heuristics
 	 */
