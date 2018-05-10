@@ -27,6 +27,9 @@ public interface EventCallbackView {
 	
 	void onGamePaused();
 	
+	void onGamePaused(Runnable onPaused);
+
 	void onGameResumed();
 	
+	void onGameResumed(Runnable onResumed);
 }

@@ -360,6 +360,8 @@ public class GameBoardView extends StackPane {
 							
 							othelloGame.getViewCallback().onGameResumed();
 							othelloGame.getViewCallback().resetBoard(delay);
+							
+							othelloGame.setResetting(false);
 						
 					});
 					
@@ -379,6 +381,8 @@ public class GameBoardView extends StackPane {
 
 		othelloGame.getViewCallback().onGameResumed();
 		othelloGame.getViewCallback().resetBoard(0);
+		
+	     othelloGame.setResetting(false);
 		
 	}
 

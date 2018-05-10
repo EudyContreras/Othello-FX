@@ -53,7 +53,7 @@ public class UserSettings {
 	 * Agent vs Agent is active. Adjust to better see
 	 * play sequence or to make the game go quick.
 	 */
-	public static final int TURN_INTERVAL = 10;
+	public static final int TURN_INTERVAL = 1000;
 	/**
 	 * Used for defining the maximum value
 	 */
@@ -80,7 +80,7 @@ public class UserSettings {
 	 * Specially on systems running other OS than windows. This
 	 * is off by default.
 	 */
-	public static final boolean USE_ANIMATION = false;
+	public static final boolean USE_ANIMATION = true;
 
 	/**
 	 * This defines the scale at which the

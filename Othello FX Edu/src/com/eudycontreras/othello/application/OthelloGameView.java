@@ -55,6 +55,8 @@ import main.UserSettings;
  */
 public class OthelloGameView{
 
+	private boolean resetting;
+
 	private int index = 0;
 	
 	private int boardSize = OthelloSettings.DEFAULT_BOARD_GRID_SIZE;
@@ -380,6 +382,14 @@ public class OthelloGameView{
 	}
 
 	
+	public boolean isResetting() {
+		return resetting;
+	}
+
+	public void setResetting(boolean resetting) {
+		this.resetting = resetting;
+	}
+
 	public StackPane getRoot() {
 		return root;
 	}
@@ -424,7 +434,11 @@ public class OthelloGameView{
 	}
 
 	public void resetBoard(int delay) {
-		getGameBoardView().resetBoard(delay);
+		if(!resetting){
+			
+			resetting = true;
+			getGameBoardView().resetBoard(delay);
+		}
 	}
 	
 	public PlayerType getPlayerType(PieceType pieceType){

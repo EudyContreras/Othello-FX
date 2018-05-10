@@ -590,11 +590,25 @@ public class GameController {
 
 		@Override
 		public void onGamePaused() {
-			setGamePaused(true);
+			onGamePaused(null);
 		}
 
 		@Override
+		public void onGamePaused(Runnable onPaused) {
+			setGamePaused(true);
+			
+			if(onPaused != null){
+				onPaused.run();
+			}
+		}
+		
+		@Override
 		public void onGameResumed() {
+			onGameResumed(null);
+		}
+		
+		@Override
+		public void onGameResumed(Runnable onResumed) {
 			setGamePaused(false);
 			if(!isGameFinished()){
 				if(UserSettings.GAME_MODE == GameMode.AGENT_VS_AGENT){
@@ -605,7 +619,11 @@ public class GameController {
 					}
 				}
 			}
+			if(onResumed != null){
+				onResumed.run();
+			}
 		}
+		
 	};
 
 	public void setInitialState(int delay) {
