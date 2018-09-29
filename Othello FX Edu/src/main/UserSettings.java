@@ -80,7 +80,7 @@ public class UserSettings {
 	 * Specially on systems running other OS than windows. This
 	 * is off by default.
 	 */
-	public static final boolean USE_ANIMATION = false;
+	public static final boolean USE_ANIMATION = (TURN_INTERVAL >= 1000) ;
 
 	/**
 	 * This defines the scale at which the
@@ -90,7 +90,7 @@ public class UserSettings {
 	 * from 0.4 to 1.4 and a value of 1.0 is default
 	 * Play around to find your sweet spot.
 	 */
-	public static final double GAME_WINDOW_SCALE = 0.7d;
+	public static final double GAME_WINDOW_SCALE = 0.9d;
 	/**
 	 * The size of the board:
 	 * The size can be 4, 6, or 8 any other value
